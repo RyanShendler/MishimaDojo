@@ -1,0 +1,12 @@
+{
+    "presets": [
+        "@babel/preset-env", //generates polyfills to make modern JS work in older browsers
+        [ //this array syntax denotes a preset with an options object
+            "@babel/preset-react",
+            {
+                "runtime": "automatic" //automatically import React to any files with JSX
+            }
+        ]
+    ],
+    "plugins": ["@babel/plugin-proposal-class-properties"]
+}
