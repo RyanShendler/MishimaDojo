@@ -4,7 +4,9 @@
   "description": "Web app for hosting Tekken information and tutorials",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack serve",
+    "build": "webpack build",
+    "listen": "node ./API/index.mjs"
   },
   "repository": {
     "type": "git",
