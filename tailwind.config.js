@@ -5,6 +5,9 @@ module.exports = {
       spacing: {
         "header-size": "4.5rem",
       },
+      fontFamily: {
+        goldman: ["Goldman", "regular"],
+      },
     },
   },
   plugins: [],

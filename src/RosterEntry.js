@@ -1,7 +1,8 @@
 const RosterEntry = () => {
   return (
-    <div>
-      <h1>RosterEntry Goes Here</h1>
+    <div className="flex flex-col items-center">
+      <img src="assets/placeholder.png" />
+      <h5 className="p-1 text-center">Character Name</h5>
     </div>
   );
 };

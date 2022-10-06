@@ -21,6 +21,7 @@
   "homepage": "https://github.com/RyanShendler/MishimaDojo#readme",
   "dependencies": {
     "@apollo/client": "^3.7.0",
+    "@auth0/auth0-react": "^1.11.0",
     "@neo4j/graphql": "^3.9.0",
     "apollo-server": "^3.10.2",
     "graphql": "^16.6.0",
