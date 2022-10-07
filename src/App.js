@@ -11,6 +11,12 @@ import Layout from "./Layout";
 import Legend from "./Legend";
 import Roster from "./Roster";
 import Search from "./Search";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+
+const client = new ApolloClient({
+  uri: "http://localhost:4000/",
+  cache: new InMemoryCache(),
+});
 
 //Layout component ensures header is rendered above the current component
 const App = () => {
@@ -21,33 +27,35 @@ const App = () => {
         clientId="x1YRgzozlH77fRaSMlWdgYIr3UOU5XMc"
         redirectUri={`${window.location.origin}/admin/home`}
       >
-        <BrowserRouter>
-          <Routes>
-            <Route element={<Layout />}>
-              <Route path="/" element={<Roster />} />
-              <Route path="/legend" element={<Legend />} />
-              <Route path="/search" element={<Search />} />
-              <Route path="/admin" element={<AdminLogin />} />
-              <Route path="/admin/home" element={<AdminHome />} />
-              <Route
-                path="/admin/characters/:charID"
-                element={<CharacterEdit />}
-              />
-              <Route
-                path="/admin/characters/:charID/moves"
-                element={<MovelistEdit />}
-              />
-              <Route
-                path="/admin/characters/:charID/stances"
-                element={<StanceEdit />}
-              />
-              <Route
-                path="/admin/characters/:charID/combos"
-                element={<ComboEdit />}
-              />
-            </Route>
-          </Routes>
-        </BrowserRouter>
+        <ApolloProvider client={client}>
+          <BrowserRouter>
+            <Routes>
+              <Route element={<Layout />}>
+                <Route path="/" element={<Roster />} />
+                <Route path="/legend" element={<Legend />} />
+                <Route path="/search" element={<Search />} />
+                <Route path="/admin" element={<AdminLogin />} />
+                <Route path="/admin/home" element={<AdminHome />} />
+                <Route
+                  path="/admin/characters/:charID"
+                  element={<CharacterEdit />}
+                />
+                <Route
+                  path="/admin/characters/:charID/moves"
+                  element={<MovelistEdit />}
+                />
+                <Route
+                  path="/admin/characters/:charID/stances"
+                  element={<StanceEdit />}
+                />
+                <Route
+                  path="/admin/characters/:charID/combos"
+                  element={<ComboEdit />}
+                />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </ApolloProvider>
       </Auth0Provider>
     </StrictMode>
   );

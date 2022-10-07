@@ -1,14 +1,27 @@
-const CharListRow = ({ charId = "", charName = "", charTimestamp = "" }) => {
+import { Link } from "react-router-dom";
+
+const CharListRow = ({ charID = "", charName = "", charTimestamp = "" }) => {
   return (
     <tr>
-      <td className="char-list-entry">{charId}</td>
+      <td className="char-list-entry">{charID}</td>
       <td className="char-list-entry">{charName}</td>
       <td className="char-list-entry">{charTimestamp}</td>
       <td className="char-list-entry">
-        <button className="rounded-md bg-green-600 p-1 text-white">Edit</button>
+        {charID && (
+          <Link
+            to={`/admin/characters/${charID}`}
+            className="rounded-md bg-green-600 p-1 text-white"
+          >
+            Edit
+          </Link>
+        )}
       </td>
       <td className="char-list-entry">
-        <button className="rounded-md bg-red-600 p-1 text-white">Delete</button>
+        {charID && (
+          <button className="rounded-md bg-red-600 p-1 text-white">
+            Delete
+          </button>
+        )}
       </td>
     </tr>
   );

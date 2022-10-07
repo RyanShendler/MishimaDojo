@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import CharacterList from "./CharacterList";
 import Loading from "../utility/Loading";
 import Unauthorized from "../utility/Unauthorized";
+import TagList from "./TagList";
 
 const AdminHome = () => {
   const { logout, user, isAuthenticated, isLoading } = useAuth0();
@@ -31,7 +32,10 @@ const AdminHome = () => {
           Logout Here
         </button>
       </div>
-      <CharacterList />
+      <div className="flex flex-row justify-center space-x-4">
+        <CharacterList />
+        <TagList />
+      </div>
     </div>
   );
 };
