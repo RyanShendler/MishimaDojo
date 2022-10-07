@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components{
+    .char-list-header{
+        @apply border-collapse border border-black p-2 text-center
+    }
+    .char-list-entry{
+        @apply border-collapse border border-black p-2 text-center
+    }
+}
+
 @font-face {
     font-family: "Goldman";
     src: url("./assets/Goldman-Regular.ttf");

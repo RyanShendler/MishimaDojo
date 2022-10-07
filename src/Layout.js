@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Header from "./Header";
+import Header from "./header/Header";
 
 //Outlet is the current child route(Roster, Legend, Techniques, etc.)
 const Layout = () => {
