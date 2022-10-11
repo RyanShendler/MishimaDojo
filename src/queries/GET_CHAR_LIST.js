@@ -5,7 +5,7 @@ import { gql } from "@apollo/client";
 export const GET_CHAR_LIST = gql`
   query GET_CHAR_LIST {
     characters {
-      charID
+      id
       name
       lastModified
     }

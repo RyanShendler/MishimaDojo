@@ -45,7 +45,7 @@ const CreateCharForm = ({ destroyForm }) => {
           />
         </label>
         <input
-          className="rounded-md bg-green-600 p-1 text-white hover:cursor-pointer"
+          className="rounded-md bg-green-600 p-1 text-lg text-white hover:cursor-pointer"
           type="submit"
           value="Submit"
         />

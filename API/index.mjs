@@ -4,7 +4,7 @@ import neo4j from "neo4j-driver";
 
 const typeDefs = gql`
   type Character {
-    charID: ID! @id
+    id: ID! @id
     lastModified: DateTime! @timestamp
     name: String!
     imageURL: String!
@@ -19,7 +19,7 @@ const typeDefs = gql`
   }
 
   type Move {
-    moveID: ID! @id
+    id: ID! @id
     lastModified: DateTime! @timestamp
     name: String!
     input: String!
@@ -37,7 +37,7 @@ const typeDefs = gql`
   }
 
   type Combo {
-    comboID: ID! @id
+    id: ID! @id
     lastModified: DateTime! @timestamp
     input: String!
     damage: Int!
@@ -47,7 +47,7 @@ const typeDefs = gql`
   }
 
   type Stance {
-    stanceID: ID! @id
+    id: ID! @id
     lastModified: DateTime! @timestamp
     name: String!
     notation: String!
@@ -58,7 +58,7 @@ const typeDefs = gql`
   }
 
   type CharacterTag {
-    charTagID: ID! @id
+    id: ID! @id
     lastModified: DateTime! @timestamp
     tag: String!
     value: String!
@@ -67,7 +67,7 @@ const typeDefs = gql`
   }
 
   type ComboTag {
-    comboTagID: ID! @id
+    id: ID! @id
     lastModified: DateTime! @timestamp
     tag: String!
     value: String!
@@ -75,28 +75,11 @@ const typeDefs = gql`
   }
 
   type MoveTag {
-    moveTagID: ID! @id
+    id: ID! @id
     lastModified: DateTime! @timestamp
     tag: String!
     value: String!
     moves: [Move!]! @relationship(type: "HAS_MOVE_TAG", direction: OUT)
-  }
-
-  type Mutation {
-    mergeCharacter(
-      name: String!
-      imageURL: String!
-      summary: String!
-      strengths: [String!]!
-      weaknesses: [String!]!
-    ): Character
-      @cypher(
-        statement: """
-        MERGE (c:Character {name:$name})
-        ON CREATE SET c.name = $name, c.imageURL = $imageURL, c.summary = $summary, c.strengths = $strengths, c.weaknesses = $weaknesses
-        RETURN c
-        """
-      )
   }
 `;
 

@@ -1,8 +1,13 @@
+import { useQuery } from "@apollo/client";
 import { useState } from "react";
+import { GET_TAG_LIST } from "../queries/GET_TAG_LIST";
+import Error from "../utility/Error";
+import Loading from "../utility/Loading";
 import CreateTagForm from "./CreateTagForm";
 import TagListEntry from "./TagListEntry";
 
 const TagList = () => {
+  const { loading, error, data } = useQuery(GET_TAG_LIST);
   const [showForm, setShowForm] = useState(false);
   const destroyForm = () => {
     setShowForm(false);
@@ -30,10 +35,33 @@ const TagList = () => {
           </button>
         )}
       </div>
-      {showForm && <CreateTagForm />}
+      {showForm && <CreateTagForm destroyForm={destroyForm} />}
       <div className="flex flex-col items-center space-y-2 p-2">
-        <TagListEntry />
-        <TagListEntry />
+        {loading ? (
+          <Loading />
+        ) : error ? (
+          <Error />
+        ) : !data.characterTags.length &&
+          !data.comboTags.length &&
+          !data.moveTags.length ? (
+          <h1>No Tags</h1>
+        ) : (
+          Object.keys(data).map((type) => {
+            return !data[type].length
+              ? null
+              : data[type].map((tag) => {
+                  return (
+                    <TagListEntry
+                      key={tag.id}
+                      tagID={tag.id}
+                      tagName={tag.tag}
+                      tagType={type}
+                      tagValue={tag.value}
+                    />
+                  );
+                });
+          })
+        )}
       </div>
     </div>
   );

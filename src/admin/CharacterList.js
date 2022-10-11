@@ -12,7 +12,6 @@ const CharacterList = () => {
   const destroyForm = () => {
     setShowForm(false);
   };
-  //figure out how to handle error
   const { loading, error, data } = useQuery(GET_CHAR_LIST);
 
   return (
@@ -55,8 +54,8 @@ const CharacterList = () => {
                 data.characters.map((character) => {
                   return (
                     <CharListRow
-                      key={character.charID}
-                      charID={character.charID}
+                      key={character.id}
+                      charID={character.id}
                       charName={character.name}
                       charTimestamp={character.lastModified}
                     />

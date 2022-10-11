@@ -23,7 +23,9 @@ const AdminLogin = () => {
         <h1 className="text-4xl font-bold">Admin Login</h1>
         <button
           className="mt-4 rounded-md border border-black p-2 shadow-md"
-          onClick={() => loginWithRedirect()}
+          onClick={() => {
+            loginWithRedirect();
+          }}
         >
           Please Login Here
         </button>

@@ -4,8 +4,8 @@ import { gql } from "@apollo/client";
 export const CREATE_CHARACTER = gql`
   mutation CREATE_CHARACTER($input: [CharacterCreateInput!]!) {
     createCharacters(input: $input) {
-      characters {
-        charID
+      info {
+        nodesCreated
       }
     }
   }

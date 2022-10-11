@@ -13,7 +13,7 @@ export const DELETE_CHARACTER = gql`
 /*
 {
   "where": {
-    "charID": null
+    "id": null
   }
 }
  */
