@@ -19,10 +19,10 @@ const AdminLogin = () => {
 
   return (
     <div className="absolute left-1/2 top-1/3">
-      <div className="relative -left-1/2 -top-1/3 flex flex-col items-center rounded-md border border-black bg-gray-300 p-4 shadow-md">
+      <div className="relative -left-1/2 -top-1/3 flex flex-col items-center rounded-md border border-black bg-content p-4 shadow-md">
         <h1 className="text-4xl font-bold">Admin Login</h1>
         <button
-          className="mt-4 rounded-md border border-black p-2 shadow-md"
+          className="mt-4 rounded-md border border-black bg-[#EDF0F5] p-2 shadow-md"
           onClick={() => {
             loginWithRedirect();
           }}

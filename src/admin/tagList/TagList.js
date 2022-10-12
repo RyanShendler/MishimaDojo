@@ -1,8 +1,8 @@
 import { useQuery } from "@apollo/client";
 import { useState } from "react";
-import { GET_TAG_LIST } from "../queries/GET_TAG_LIST";
-import Error from "../utility/Error";
-import Loading from "../utility/Loading";
+import { GET_TAG_LIST } from "../../queries/GET_TAG_LIST";
+import Error from "../../utility/Error";
+import Loading from "../../utility/Loading";
 import CreateTagForm from "./CreateTagForm";
 import TagListEntry from "./TagListEntry";
 
@@ -14,7 +14,7 @@ const TagList = () => {
   };
 
   return (
-    <div className="flex flex-col rounded-sm border border-black bg-gray-200 shadow-md">
+    <div className="flex w-1/3 flex-col rounded-sm border border-black bg-content shadow-md">
       <div className="flex w-full flex-row items-center justify-between space-x-4 p-2">
         <h1 className="text-2xl font-bold">Tags</h1>
         {showForm ? (
@@ -36,7 +36,7 @@ const TagList = () => {
         )}
       </div>
       {showForm && <CreateTagForm destroyForm={destroyForm} />}
-      <div className="flex flex-col items-center space-y-2 p-2">
+      <div className="grid grid-cols-2 gap-4 px-4 pt-2 pb-4">
         {loading ? (
           <Loading />
         ) : error ? (

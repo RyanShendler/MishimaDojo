@@ -1,7 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
-import { CREATE_CHARACTER } from "../mutations/CREATE_CHARACTER";
-import { GET_CHAR_LIST } from "../queries/GET_CHAR_LIST";
+import { CREATE_CHARACTER } from "../../mutations/CREATE_CHARACTER";
+import { GET_CHAR_LIST } from "../../queries/GET_CHAR_LIST";
 
 const CreateCharForm = ({ destroyForm }) => {
   const [name, setName] = useState("");

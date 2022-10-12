@@ -7,7 +7,7 @@ export const GET_CHAR_LIST = gql`
     characters {
       id
       name
-      lastModified
+      imageURL
     }
   }
 `;

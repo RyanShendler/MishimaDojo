@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react";
-import { DELETE_CHAR_TAG } from "../mutations/DELETE_CHAR_TAG";
-import { DELETE_MOVE_TAG } from "../mutations/DELETE_MOVE_TAG";
-import { DELETE_COMBO_TAG } from "../mutations/DELETE_COMBO_TAG";
+import { DELETE_CHAR_TAG } from "../../mutations/DELETE_CHAR_TAG";
+import { DELETE_MOVE_TAG } from "../../mutations/DELETE_MOVE_TAG";
+import { DELETE_COMBO_TAG } from "../../mutations/DELETE_COMBO_TAG";
 import { useMutation } from "@apollo/client";
-import { GET_TAG_LIST } from "../queries/GET_TAG_LIST";
+import { GET_TAG_LIST } from "../../queries/GET_TAG_LIST";
 import { createPortal } from "react-dom";
 
 const DeleteTagPopup = ({

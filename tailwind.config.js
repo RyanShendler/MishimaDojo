@@ -8,6 +8,10 @@ module.exports = {
       fontFamily: {
         goldman: ["Goldman", "regular"],
       },
+      colors: {
+        content: "#E8ECF2",
+        header: "#334155",
+      },
     },
   },
   plugins: [],

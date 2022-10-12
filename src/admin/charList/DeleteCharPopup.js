@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { DELETE_CHARACTER } from "../mutations/DELETE_CHARACTER";
-import { GET_CHAR_LIST } from "../queries/GET_CHAR_LIST";
+import { DELETE_CHARACTER } from "../../mutations/DELETE_CHARACTER";
+import { GET_CHAR_LIST } from "../../queries/GET_CHAR_LIST";
 import { useMutation } from "@apollo/client";
 
 const DeleteCharPopup = ({ charName, charID, destroyPopup }) => {

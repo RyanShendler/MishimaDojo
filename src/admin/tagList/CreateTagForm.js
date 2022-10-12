@@ -1,9 +1,9 @@
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
-import { CREATE_CHAR_TAG } from "../mutations/CREATE_CHAR_TAG";
-import { CREATE_MOVE_TAG } from "../mutations/CREATE_MOVE_TAG";
-import { CREATE_COMBO_TAG } from "../mutations/CREATE_COMBO_TAG";
-import { GET_TAG_LIST } from "../queries/GET_TAG_LIST";
+import { CREATE_CHAR_TAG } from "../../mutations/CREATE_CHAR_TAG";
+import { CREATE_MOVE_TAG } from "../../mutations/CREATE_MOVE_TAG";
+import { CREATE_COMBO_TAG } from "../../mutations/CREATE_COMBO_TAG";
+import { GET_TAG_LIST } from "../../queries/GET_TAG_LIST";
 
 const TAG_TYPES = ["Character Tag", "Move Tag", "Combo Tag"];
 const CreateTagForm = ({ destroyForm }) => {
@@ -102,7 +102,7 @@ const CreateTagForm = ({ destroyForm }) => {
           </label>
         </div>
         <input
-          className="rounded-md bg-green-600 p-1 text-lg text-white hover:cursor-pointer disabled:bg-green-700"
+          className="rounded-md bg-green-600 p-1 text-lg text-white hover:cursor-pointer disabled:bg-green-800"
           type="submit"
           value="Submit"
           disabled={!type}

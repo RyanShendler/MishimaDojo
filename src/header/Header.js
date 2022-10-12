@@ -38,13 +38,13 @@ const Header = () => {
 
   //setting position to absolute allows scrollbar to go over header
   return (
-    <header className="absolute inset-x-0 top-0 flex h-header-size flex-row items-center justify-between bg-slate-500 p-2">
+    <header className="absolute inset-x-0 top-0 flex h-header-size flex-row items-center justify-between bg-header p-2">
       <div ref={navRef} className="fixed">
         {showNavbar && <Navbar destroyNavbar={() => destroyNavbar()} />}
       </div>
       <div className="">
         <svg
-          className="cursor-pointer hover:bg-slate-400"
+          className="cursor-pointer fill-[#CBD5E1] hover:bg-[#64748B]"
           id="nav-menu-icon"
           onClick={() => setShowNavbar(true)}
           xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +56,7 @@ const Header = () => {
       </div>
       <div className="absolute left-1/2">
         <Link to={"/"}>
-          <h1 className="relative -left-1/2 font-goldman text-5xl text-white">
+          <h1 className="relative -left-1/2 whitespace-nowrap font-goldman text-5xl text-[#F1F5F9]">
             Mishima Dojo
           </h1>
         </Link>
@@ -64,7 +64,7 @@ const Header = () => {
       <div className="pr-2">
         <Link to={"/search"}>
           <svg
-            className="cursor-pointer hover:bg-slate-400"
+            className="cursor-pointer fill-[#CBD5E1] hover:bg-[#64748B]"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 48 48"
             width="2.5rem"

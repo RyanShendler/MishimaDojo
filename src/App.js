@@ -2,7 +2,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AdminHome from "./admin/AdminHome";
 import AdminLogin from "./admin/AdminLogin";
-import CharacterEdit from "./admin/CharacterEdit";
+import CharacterEdit from "./admin/charEdit/CharacterEdit";
 import MovelistEdit from "./admin/MovelistEdit";
 import StanceEdit from "./admin/StanceEdit";
 import ComboEdit from "./admin/ComboEdit";
