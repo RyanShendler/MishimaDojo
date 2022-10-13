@@ -81,6 +81,20 @@ const typeDefs = gql`
     value: String!
     moves: [Move!]! @relationship(type: "HAS_MOVE_TAG", direction: OUT)
   }
+
+  type Mutation {
+    setCharTag(charID: ID!, tagID: ID!, tag: String!): CharacterTag
+      @cypher(
+        statement: """
+        MATCH (c:Character {id: $charID})
+        MATCH (t:CharacterTag {id: $tagID})
+        OPTIONAL MATCH (c)<-[r]-(:CharacterTag {tag: $tag})
+        DELETE r
+        CREATE (c)<-[:HAS_CHARACTER_TAG]-(t)
+        RETURN t
+        """
+      )
+  }
 `;
 
 const driver = neo4j.driver(

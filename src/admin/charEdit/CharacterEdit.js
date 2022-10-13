@@ -15,11 +15,11 @@ const CharacterEdit = () => {
       >
         Back to Home
       </Link>
-      <div className="grid grid-cols-2 rounded-md border border-black bg-content shadow-md">
-        <CharEditHeader />
-        <CharEditDetails />
-        <CharEditSummary />
-        <CharEditProCon />
+      <div className="grid min-w-[66%] grid-cols-2 rounded-md border border-black bg-content shadow-md">
+        <CharEditHeader charID={charID} />
+        <CharEditDetails charID={charID} />
+        <CharEditSummary charID={charID} />
+        <CharEditProCon charID={charID} />
       </div>
     </div>
   );

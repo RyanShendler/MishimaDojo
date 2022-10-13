@@ -5,6 +5,10 @@ import { EDIT_COMBO_TAG } from "../../mutations/EDIT_COMBO_TAG";
 import { EDIT_MOVE_TAG } from "../../mutations/EDIT_MOVE_TAG";
 import { useMutation } from "@apollo/client";
 import { GET_TAG_LIST } from "../../queries/GET_TAG_LIST";
+import { GET_ALL_TIERS } from "../../queries/GET_ALL_TIERS";
+import { GET_CHAR_TIER } from "../../queries/GET_CHAR_TIER";
+import { GET_CHAR_DIFFICULTY } from "../../queries/GET_CHAR_DIFFICULTY";
+import { GET_CHAR_PLAYSTYLE } from "../../queries/GET_CHAR_PLAYSTYLE";
 
 const TagListEntry = ({
   tagID = "",
@@ -20,7 +24,13 @@ const TagListEntry = ({
   const [value, setValue] = useState(tagValue);
 
   const [editCharTag] = useMutation(EDIT_CHAR_TAG, {
-    refetchQueries: [GET_TAG_LIST],
+    refetchQueries: [
+      GET_TAG_LIST,
+      GET_ALL_TIERS,
+      GET_CHAR_TIER,
+      GET_CHAR_DIFFICULTY,
+      GET_CHAR_PLAYSTYLE,
+    ],
     ignoreResults: true,
   });
   const [editMoveTag] = useMutation(EDIT_MOVE_TAG, {
