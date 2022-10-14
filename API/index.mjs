@@ -42,7 +42,6 @@ const typeDefs = gql`
     lastModified: DateTime! @timestamp
     name: String!
     input: String!
-    damage: Int!
     users: [Character!]! @relationship(type: "HAS_COMBO", direction: IN)
     launchers: [Move!]! @relationship(type: "USES_LAUNCHER", direction: OUT)
     moves: [Move!]! @relationship(type: "COMBO_MOVE", direction: OUT)

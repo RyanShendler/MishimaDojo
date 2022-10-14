@@ -17,7 +17,6 @@ export const CREATE_COMBO = gql`
     {
       "name": null,
       "input": "",
-      "damage": 0,
       "users": {
         "connect": [
           {
