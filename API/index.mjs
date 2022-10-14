@@ -23,10 +23,10 @@ const typeDefs = gql`
     lastModified: DateTime! @timestamp
     name: String!
     input: String!
-    startup: Int!
-    onHit: Int!
-    onCH: Int!
-    onBlock: Int!
+    startup: String!
+    onHit: String!
+    onCH: String!
+    onBlock: String!
     summary: String!
     damageHit: Int!
     damageCH: Int!
