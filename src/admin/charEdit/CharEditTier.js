@@ -3,6 +3,7 @@ import { useState } from "react";
 import { SET_CHAR_TIER } from "../../mutations/SET_CHAR_TIER";
 import { GET_ALL_TIERS } from "../../queries/GET_ALL_TIERS";
 import { GET_CHAR_TIER } from "../../queries/GET_CHAR_TIER";
+import { DELETE_CHAR_TIER } from "../../mutations/DELETE_CHAR_TIER";
 import Error from "../../utility/Error";
 import Loading from "../../utility/Loading";
 
@@ -18,6 +19,10 @@ const CharEditTier = ({ charID, charTier }) => {
     },
   });
   const [editTier] = useMutation(SET_CHAR_TIER, {
+    refetchQueries: [GET_CHAR_TIER],
+    ignoreResults: true,
+  });
+  const [deleteTier] = useMutation(DELETE_CHAR_TIER, {
     refetchQueries: [GET_CHAR_TIER],
     ignoreResults: true,
   });
@@ -50,13 +55,32 @@ const CharEditTier = ({ charID, charTier }) => {
             width="100%"
             className="max-w-[1.5rem] cursor-pointer fill-green-700"
             onClick={() => {
-              //only changes tier if user didnt select Untiered
+              //connect if user selected actual tier, disconnect if user selected Untiered
               if (tierID) {
                 editTier({
                   variables: {
                     charId: charID,
                     tagId: tierID,
                     tag: "Tier",
+                  },
+                });
+              } else {
+                deleteTier({
+                  variables: {
+                    where: {
+                      id: charID,
+                    },
+                    disconnect: {
+                      tags: [
+                        {
+                          where: {
+                            node: {
+                              id: charTier.id,
+                            },
+                          },
+                        },
+                      ],
+                    },
                   },
                 });
               }

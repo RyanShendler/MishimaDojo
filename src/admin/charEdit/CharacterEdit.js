@@ -3,6 +3,9 @@ import CharEditHeader from "./CharEditHeader";
 import CharEditDetails from "./CharEditDetails";
 import CharEditSummary from "./CharEditSummary";
 import CharEditProCon from "./CharEditProCon";
+import CharEditMoves from "./CharEditMoves";
+import CharEditStances from "./CharEditStances";
+import CharEditCombos from "./CharEditCombos";
 
 //home page for editing a character
 const CharacterEdit = () => {
@@ -21,6 +24,9 @@ const CharacterEdit = () => {
         <CharEditSummary charID={charID} />
         <CharEditProCon charID={charID} />
       </div>
+      <CharEditMoves charID={charID} />
+      <CharEditStances charID={charID} />
+      <CharEditCombos charID={charID} />
     </div>
   );
 };

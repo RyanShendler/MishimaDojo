@@ -49,12 +49,10 @@ const CharEditDetails = ({ charID }) => {
           <Error />
         ) : !playstyleData.characters.length ? (
           <h3>Character Not Found</h3>
-        ) : !playstyleData.characters[0].tags.length ? (
-          <h3>No Playstyle Tags</h3>
         ) : (
           <CharEditPlaystyle
             charID={charID}
-            charPlaystyle={playstyleData.characters[0].tags}
+            charPlaystyles={playstyleData.characters[0].tags}
           />
         )}
       </div>
@@ -91,7 +89,10 @@ const CharEditDetails = ({ charID }) => {
         ) : !difficultyData.characters.length ? (
           <h3>Character Not Found</h3>
         ) : !difficultyData.characters[0].tags.length ? (
-          <h3>No Difficulty Tags</h3>
+          <CharEditDifficulty
+            charID={charID}
+            charDifficulty={{ id: "", value: "Unrated" }}
+          />
         ) : (
           <CharEditDifficulty
             charID={charID}

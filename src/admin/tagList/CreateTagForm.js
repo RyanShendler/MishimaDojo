@@ -5,8 +5,8 @@ import { CREATE_MOVE_TAG } from "../../mutations/CREATE_MOVE_TAG";
 import { CREATE_COMBO_TAG } from "../../mutations/CREATE_COMBO_TAG";
 import { GET_TAG_LIST } from "../../queries/GET_TAG_LIST";
 import { GET_ALL_TIERS } from "../../queries/GET_ALL_TIERS";
-import { GET_CHAR_TIER } from "../../queries/GET_CHAR_TIER";
-import { GET_CHAR_DIFFICULTY } from "../../queries/GET_CHAR_DIFFICULTY";
+import { GET_ALL_DIFFICULTIES } from "../../queries/GET_ALL_DIFFICULTIES";
+import { GET_NEW_PLAYSTYLES } from "../../queries/GET_NEW_PLAYSTYLES";
 
 const TAG_TYPES = ["Character Tag", "Move Tag", "Combo Tag"];
 const CreateTagForm = ({ destroyForm }) => {
@@ -15,7 +15,12 @@ const CreateTagForm = ({ destroyForm }) => {
   const [value, setValue] = useState("");
 
   const [createCharTag] = useMutation(CREATE_CHAR_TAG, {
-    refetchQueries: [GET_TAG_LIST, GET_ALL_TIERS],
+    refetchQueries: [
+      GET_TAG_LIST,
+      GET_ALL_TIERS,
+      GET_ALL_DIFFICULTIES,
+      GET_NEW_PLAYSTYLES,
+    ],
     ignoreResults: true,
   });
   const [createMoveTag] = useMutation(CREATE_MOVE_TAG, {

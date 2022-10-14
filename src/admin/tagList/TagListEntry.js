@@ -9,6 +9,8 @@ import { GET_ALL_TIERS } from "../../queries/GET_ALL_TIERS";
 import { GET_CHAR_TIER } from "../../queries/GET_CHAR_TIER";
 import { GET_CHAR_DIFFICULTY } from "../../queries/GET_CHAR_DIFFICULTY";
 import { GET_CHAR_PLAYSTYLE } from "../../queries/GET_CHAR_PLAYSTYLE";
+import { GET_ALL_DIFFICULTIES } from "../../queries/GET_ALL_DIFFICULTIES";
+import { GET_NEW_PLAYSTYLES } from "../../queries/GET_NEW_PLAYSTYLES";
 
 const TagListEntry = ({
   tagID = "",
@@ -27,6 +29,8 @@ const TagListEntry = ({
     refetchQueries: [
       GET_TAG_LIST,
       GET_ALL_TIERS,
+      GET_ALL_DIFFICULTIES,
+      GET_NEW_PLAYSTYLES,
       GET_CHAR_TIER,
       GET_CHAR_DIFFICULTY,
       GET_CHAR_PLAYSTYLE,

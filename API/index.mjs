@@ -32,17 +32,20 @@ const typeDefs = gql`
     damageCH: Int!
     users: [Character!]! @relationship(type: "HAS_MOVE", direction: IN)
     stances: [Stance!]! @relationship(type: "STANCE_MOVE", direction: IN)
-    combos: [Combo!]! @relationship(type: "USES_LAUNCHER", direction: IN)
+    combos: [Combo!]! @relationship(type: "COMBO_MOVE", direction: IN)
+    launcherFor: [Combo!]! @relationship(type: "USES_LAUNCHER", direction: IN)
     tags: [MoveTag!]! @relationship(type: "HAS_MOVE_TAG", direction: IN)
   }
 
   type Combo {
     id: ID! @id
     lastModified: DateTime! @timestamp
+    name: String!
     input: String!
     damage: Int!
     users: [Character!]! @relationship(type: "HAS_COMBO", direction: IN)
     launchers: [Move!]! @relationship(type: "USES_LAUNCHER", direction: OUT)
+    moves: [Move!]! @relationship(type: "COMBO_MOVE", direction: OUT)
     tags: [ComboTag!]! @relationship(type: "HAS_COMBO_TAG", direction: IN)
   }
 

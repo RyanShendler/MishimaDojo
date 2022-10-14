@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-//get a specific character tag for a specific character
+//get the Tier tag attached to a character
 export const GET_CHAR_TIER = gql`
   query GET_CHAR_TIER($where: CharacterWhere, $tagsWhere2: CharacterTagWhere) {
     characters(where: $where) {
