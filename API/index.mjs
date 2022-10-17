@@ -23,7 +23,7 @@ const typeDefs = gql`
     lastModified: DateTime! @timestamp
     name: String!
     input: String!
-    startup: String!
+    startup: Int!
     onHit: String!
     onCH: String!
     onBlock: String!
@@ -32,19 +32,26 @@ const typeDefs = gql`
     damageCH: Int!
     users: [Character!]! @relationship(type: "HAS_MOVE", direction: IN)
     stances: [Stance!]! @relationship(type: "STANCE_MOVE", direction: IN)
-    combos: [Combo!]! @relationship(type: "COMBO_MOVE", direction: IN)
     launcherFor: [Combo!]! @relationship(type: "USES_LAUNCHER", direction: IN)
     tags: [MoveTag!]! @relationship(type: "HAS_MOVE_TAG", direction: IN)
+  }
+
+  type ComboInput {
+    id: ID! @id
+    type: String!
+    input: String!
+    moveID: ID
+    prevInput: [ComboInput!]! @relationship(type: "NEXT_MOVE", direction: IN)
+    nextInput: [ComboInput!]! @relationship(type: "NEXT_MOVE", direction: OUT)
   }
 
   type Combo {
     id: ID! @id
     lastModified: DateTime! @timestamp
     name: String!
-    input: String!
+    inputs: [ComboInput!]! @relationship(type: "NEXT_MOVE", direction: OUT)
     users: [Character!]! @relationship(type: "HAS_COMBO", direction: IN)
     launchers: [Move!]! @relationship(type: "USES_LAUNCHER", direction: OUT)
-    moves: [Move!]! @relationship(type: "COMBO_MOVE", direction: OUT)
     tags: [ComboTag!]! @relationship(type: "HAS_COMBO_TAG", direction: IN)
   }
 
@@ -94,6 +101,79 @@ const typeDefs = gql`
         DELETE r
         CREATE (c)<-[:HAS_CHARACTER_TAG]-(t)
         RETURN t
+        """
+      )
+
+    deleteChar(charID: ID!): Character
+      @cypher(
+        statement: """
+        MATCH (n:Character {id: $charID})
+        OPTIONAL MATCH (n)-->(m:Move)
+        OPTIONAL MATCH (n)-->(s:Stance)
+        OPTIONAL MATCH (n)-->(c:Combo)
+        DETACH DELETE n,m,s,c
+        RETURN null
+        """
+      )
+
+    makeCombo(charID: ID!, name: String!, type: String!, input: String!): Combo
+      @cypher(
+        statement: """
+        MATCH (c:Character {id: $charID})
+        CREATE (c)-[:HAS_COMBO]->(n:Combo {id: randomuuid(), lastModified: datetime(), name: $name})-[:NEXT_MOVE]->(:ComboInput {id: randomuuid(), type: $type, input: $type})
+        RETURN n
+        """
+      )
+
+    removeCombo(comboID: ID!): Combo
+      @cypher(
+        statement: """
+        MATCH p = (:Combo {id: $comboID})-[:NEXT_MOVE*]->()
+        WITH collect(p) as paths, max(length(p)) as maxLength
+        WITH [p IN paths WHERE length(p) = maxLength] as longestPaths
+        FOREACH(n IN nodes(head(longestPaths)) | DETACH DELETE n)
+        RETURN null
+        """
+      )
+
+    addInput(
+      comboID: ID!
+      type: String!
+      input: String!
+      moveID: ID
+    ): ComboInput
+      @cypher(
+        statement: """
+        MATCH p = (:Combo {id: $comboID})-[:NEXT_MOVE*]->()
+        WITH collect(p) as paths, max(length(p)) as maxLength
+        WITH [p IN paths WHERE length(p) = maxLength] as longestPaths
+        WITH last(nodes(head(longestPaths))) as lastNode
+        CREATE (lastNode)-[:NEXT_MOVE]->(n:ComboInput {id: randomuuid(), type: $type, input: $input, moveID: $moveID})
+        RETURN n
+        """
+      )
+
+    removeInput(inputID: ID!): ComboInput
+      @cypher(
+        statement: """
+        MATCH (n:ComboInput {id: $inputID})
+        OPTIONAL MATCH (b:ComboInput)-[:NEXT_MOVE]->(n)
+        OPTIONAL MATCH (n)-[:NEXT_MOVE]->(a:ComboInput)
+        FOREACH(x IN CASE WHEN a IS NULL THEN [] ELSE [a] END |
+          FOREACH(y IN CASE WHEN b IS NULL THEN [] ELSE [b] END |
+            CREATE (y)-[:NEXT_MOVE]->(x)))
+        DETACH DELETE n
+        RETURN null
+        """
+      )
+  }
+
+  type Query {
+    getInputs(comboID: ID!): [ComboInput!]!
+      @cypher(
+        statement: """
+        MATCH (:Combo {id: $comboID})-[:NEXT_MOVE*]->(n)
+        RETURN n
         """
       )
   }

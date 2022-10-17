@@ -3,9 +3,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AdminHome from "./admin/AdminHome";
 import AdminLogin from "./admin/AdminLogin";
 import CharacterEdit from "./admin/charEdit/CharacterEdit";
-import MovelistEdit from "./admin/MovelistEdit";
-import StanceEdit from "./admin/StanceEdit";
-import ComboEdit from "./admin/ComboEdit";
+import MovelistEdit from "./admin/moveEdit/MovelistEdit";
+import StanceEdit from "./admin/stanceEdit/StanceEdit";
+import ComboEdit from "./admin/comboEdit/ComboEdit";
 import Layout from "./Layout";
 import Legend from "./Legend";
 import Roster from "./Roster";
@@ -39,15 +39,15 @@ const App = () => {
                 element={<CharacterEdit />}
               />
               <Route
-                path="/admin/characters/:charID/moves"
+                path="/admin/characters/:charID/moves/:moveID"
                 element={<MovelistEdit />}
               />
               <Route
-                path="/admin/characters/:charID/stances"
+                path="/admin/characters/:charID/stances/:stanceID"
                 element={<StanceEdit />}
               />
               <Route
-                path="/admin/characters/:charID/combos"
+                path="/admin/characters/:charID/combos/:comboID"
                 element={<ComboEdit />}
               />
             </Route>

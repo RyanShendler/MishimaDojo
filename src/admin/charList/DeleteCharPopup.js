@@ -32,9 +32,7 @@ const DeleteCharPopup = ({ charName, charID, destroyPopup }) => {
             onClick={() => {
               deleteCharacter({
                 variables: {
-                  where: {
-                    id: charID,
-                  },
+                  charId: charID,
                 },
               });
               destroyPopup();
