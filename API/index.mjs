@@ -32,7 +32,12 @@ const typeDefs = gql`
     damageCH: Int!
     users: [Character!]! @relationship(type: "HAS_MOVE", direction: IN)
     stances: [Stance!]! @relationship(type: "STANCE_MOVE", direction: IN)
-    launcherFor: [Combo!]! @relationship(type: "USES_LAUNCHER", direction: IN)
+    launcherFor: [Combo!]!
+      @relationship(
+        type: "USES_LAUNCHER"
+        properties: "UsesLauncher"
+        direction: IN
+      )
     tags: [MoveTag!]! @relationship(type: "HAS_MOVE_TAG", direction: IN)
   }
 
@@ -51,8 +56,17 @@ const typeDefs = gql`
     name: String!
     inputs: [ComboInput!]! @relationship(type: "NEXT_MOVE", direction: OUT)
     users: [Character!]! @relationship(type: "HAS_COMBO", direction: IN)
-    launchers: [Move!]! @relationship(type: "USES_LAUNCHER", direction: OUT)
+    launchers: [Move!]!
+      @relationship(
+        type: "USES_LAUNCHER"
+        properties: "UsesLauncher"
+        direction: OUT
+      )
     tags: [ComboTag!]! @relationship(type: "HAS_COMBO_TAG", direction: IN)
+  }
+
+  interface UsesLauncher @relationshipProperties {
+    type: String!
   }
 
   type Stance {

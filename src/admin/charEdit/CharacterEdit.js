@@ -13,10 +13,10 @@ const CharacterEdit = () => {
   return (
     <div className="flex flex-col items-center space-y-4 p-4">
       <Link
-        className="text-l self-end rounded-md border border-black bg-[#EDF0F5] p-2 shadow-sm"
+        className="self-end rounded-md border border-black bg-[#EDF0F5] p-2 shadow-sm"
         to="/admin/home"
       >
-        Back to Home
+        Back to Home Page
       </Link>
       <div className="grid min-w-[66%] grid-cols-2 rounded-md border border-black bg-content shadow-md">
         <CharEditHeader charID={charID} />

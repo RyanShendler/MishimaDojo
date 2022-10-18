@@ -7,6 +7,7 @@ export const GET_STANCELIST = gql`
       stances {
         id
         name
+        notation
       }
     }
   }

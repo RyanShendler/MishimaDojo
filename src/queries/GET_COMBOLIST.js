@@ -7,11 +7,15 @@ export const GET_COMBOLIST = gql`
       combos {
         id
         name
-        input
       }
     }
   }
 `;
 
 /*
+{
+  "where": {
+    "id": null
+  }
+}
  */

@@ -1,29 +1,24 @@
-import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { DELETE_COMBO } from "../../mutations/DELETE_COMBO";
+import { GET_COMBOLIST } from "../../queries/GET_COMBOLIST";
 import { Link } from "react-router-dom";
-import DeleteCharPopup from "./DeleteCharPopup";
 
-const CharListEntry = ({ charID = "", charName = "", charImage = "" }) => {
-  const [showPopup, setShowPopup] = useState(false);
-  const destroyPopup = () => setShowPopup(false);
+const CharComboEntry = ({ charID, comboID, comboName }) => {
+  const [deleteCombo] = useMutation(DELETE_COMBO, {
+    refetchQueries: [GET_COMBOLIST],
+    ignoreResults: true,
+  });
 
   return (
     <div className="flex flex-row shadow-md">
-      {showPopup && (
-        <DeleteCharPopup
-          destroyPopup={destroyPopup}
-          charID={charID}
-          charName={charName}
-        />
-      )}
       <div className="flex w-3/4 flex-row items-center justify-around rounded-l-sm border border-black bg-[#EDF0F5] p-1">
-        <img className="shrink" src={charImage} alt="Character Image" />
-        <h2 className="text-xl">{charName}</h2>
+        <h2 className="text-center text-xl font-bold">{comboName}</h2>
       </div>
       <div className="flex w-1/4 flex-col items-center justify-evenly rounded-r-md border-y border-r border-black bg-header">
-        <Link className="" to={`/admin/characters/${charID}`}>
+        <Link to={`/admin/characters/${charID}/combos/${comboID}`}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="max-w-[2.75rem] cursor-pointer fill-[#CBD5E1]"
+            className="max-w-[3rem] cursor-pointer fill-[#CBD5E1]"
             viewBox="0 0 48 48"
             width="100%"
           >
@@ -34,8 +29,14 @@ const CharListEntry = ({ charID = "", charName = "", charImage = "" }) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 48 48"
           width="100%"
-          className="max-w-[2.75rem] cursor-pointer fill-[#CBD5E1]"
-          onClick={() => setShowPopup(true)}
+          className="max-w-[3rem] cursor-pointer fill-[#CBD5E1]"
+          onClick={() =>
+            deleteCombo({
+              variables: {
+                comboId: comboID,
+              },
+            })
+          }
         >
           <path d="M13.05 42q-1.25 0-2.125-.875T10.05 39V10.5H8v-3h9.4V6h13.2v1.5H40v3h-2.05V39q0 1.2-.9 2.1-.9.9-2.1.9Zm21.9-31.5h-21.9V39h21.9Zm-16.6 24.2h3V14.75h-3Zm8.3 0h3V14.75h-3Zm-13.6-24.2V39Z" />
         </svg>
@@ -44,4 +45,4 @@ const CharListEntry = ({ charID = "", charName = "", charImage = "" }) => {
   );
 };
 
-export default CharListEntry;
+export default CharComboEntry;

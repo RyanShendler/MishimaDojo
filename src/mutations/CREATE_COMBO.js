@@ -1,34 +1,23 @@
 import { gql } from "@apollo/client";
 
 export const CREATE_COMBO = gql`
-  mutation CREATE_COMBO($input: [ComboCreateInput!]!) {
-    createCombos(input: $input) {
-      info {
-        nodesCreated
-        relationshipsCreated
-      }
+  mutation CREATE_COMBO(
+    $charId: ID!
+    $name: String!
+    $type: String!
+    $input: String!
+  ) {
+    makeCombo(charID: $charId, name: $name, type: $type, input: $input) {
+      id
     }
   }
 `;
 
 /*
-{
-  "input": [
-    {
-      "name": null,
-      "input": "",
-      "users": {
-        "connect": [
-          {
-            "where": {
-              "node": {
-                "id": null
-              }
-            }
-          }
-        ]
-      }
-    }
-  ]
+{  
+  "charId": null,
+  "name": null,  
+  "type": "Launcher",
+  "input": "Launcher"
 }
  */
