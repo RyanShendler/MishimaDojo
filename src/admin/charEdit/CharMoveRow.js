@@ -2,6 +2,8 @@ import { useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { DELETE_MOVE } from "../../mutations/DELETE_MOVE";
 import { GET_MOVELIST } from "../../queries/GET_MOVELIST";
+import { GET_NONSTANCE_MOVES } from "../../queries/GET_NONSTANCE_MOVES";
+import { GET_STANCE_MOVES } from "../../queries/GET_STANCE_MOVES";
 
 const CharMoveRow = ({
   charID,
@@ -10,7 +12,7 @@ const CharMoveRow = ({
   moveInput = "",
 }) => {
   const [deleteMove] = useMutation(DELETE_MOVE, {
-    refetchQueries: [GET_MOVELIST],
+    refetchQueries: [GET_MOVELIST, GET_NONSTANCE_MOVES, GET_STANCE_MOVES],
     ignoreResults: true,
   });
 

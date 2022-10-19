@@ -1,56 +1,39 @@
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
-import { SET_MOVE_HEADER } from "../../mutations/SET_MOVE_HEADER";
-import { GET_MOVELIST } from "../../queries/GET_MOVELIST";
-import { GET_MOVE_HEADER } from "../../queries/GET_MOVE_HEADER";
-import { GET_NONSTANCE_MOVES } from "../../queries/GET_NONSTANCE_MOVES";
-import { GET_STANCE_MOVES } from "../../queries/GET_STANCE_MOVES";
+import { SET_MOVE_SUMMARY } from "../../mutations/SET_MOVE_SUMMARY";
+import { GET_MOVE_SUMMARY } from "../../queries/GET_MOVE_SUMMARY";
 
-const MoveHeaderText = ({ moveID, moveName, moveInput }) => {
+const MoveSummaryText = ({ moveID, moveSummary }) => {
   const [editing, setEditing] = useState(false);
-  const [name, setName] = useState(moveName);
-  const [input, setInput] = useState(moveInput);
-  const [setHeader] = useMutation(SET_MOVE_HEADER, {
-    refetchQueries: [
-      GET_MOVE_HEADER,
-      GET_MOVELIST,
-      GET_NONSTANCE_MOVES,
-      GET_STANCE_MOVES,
-    ],
+  const [summary, setSummary] = useState(moveSummary);
+  const [editSummary] = useMutation(SET_MOVE_SUMMARY, {
+    refetchQueries: [GET_MOVE_SUMMARY],
     ignoreResults: true,
   });
 
   return (
     <div>
       {editing ? (
-        <div className="relative flex w-full flex-col items-center justify-center p-4">
-          <input
-            className="mb-2"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+        <div className="flex flex-row">
+          <textarea
+            className="w-full p-1 font-sans"
+            value={summary}
+            onChange={(e) => setSummary(e.target.value)}
           />
-          <input
-            className=""
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-          />
-          <div className="absolute right-1 top-1 flex flex-col">
+          <div className="flex flex-col justify-evenly">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 48 48"
               width="100%"
-              className="max-w-[2rem] cursor-pointer fill-green-600"
+              className="max-w-[2.25rem] cursor-pointer fill-green-600"
               onClick={() => {
-                setHeader({
+                editSummary({
                   variables: {
                     where: {
                       id: moveID,
                     },
                     update: {
-                      name: name,
-                      input: input,
+                      summary: summary,
                     },
                   },
                 });
@@ -63,10 +46,9 @@ const MoveHeaderText = ({ moveID, moveName, moveInput }) => {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 48 48"
               width="100%"
-              className="max-w-[2rem] cursor-pointer fill-red-600"
+              className="max-w-[2.25rem] cursor-pointer fill-red-600"
               onClick={() => {
-                setInput(moveInput);
-                setName(moveName);
+                setSummary(moveSummary);
                 setEditing(false);
               }}
             >
@@ -75,14 +57,13 @@ const MoveHeaderText = ({ moveID, moveName, moveInput }) => {
           </div>
         </div>
       ) : (
-        <div className="relative flex w-full flex-col items-center justify-center p-4">
-          <h2 className="pb-2 text-center text-4xl font-bold">{moveName}</h2>
-          <h2 className="text-2xl">{moveInput}</h2>
+        <div className="flex flex-row">
+          <pre className="w-full font-sans">{moveSummary}</pre>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 48 48"
             width="100%"
-            className="absolute right-1 top-1 max-w-[2rem] cursor-pointer"
+            className="max-w-[2.5rem] cursor-pointer fill-black"
             onClick={() => setEditing(true)}
           >
             <path d="m39.7 14.7-6.4-6.4 2.1-2.1q.85-.85 2.125-.825 1.275.025 2.125.875L41.8 8.4q.85.85.85 2.1t-.85 2.1Zm-2.1 2.1L12.4 42H6v-6.4l25.2-25.2Z" />
@@ -93,4 +74,4 @@ const MoveHeaderText = ({ moveID, moveName, moveInput }) => {
   );
 };
 
-export default MoveHeaderText;
+export default MoveSummaryText;

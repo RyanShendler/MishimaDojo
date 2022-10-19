@@ -27,10 +27,10 @@ const MoveEdit = () => {
       <div className="flex min-w-[66%] flex-col rounded-md border border-black bg-content shadow-md">
         <div className="flex flex-row">
           <MoveEditHeader moveID={moveID} />
-          <MoveEditProps />
+          <MoveEditProps moveID={moveID} />
         </div>
-        <MoveEditSummary />
-        <MoveEditTags />
+        <MoveEditSummary moveID={moveID} />
+        <MoveEditTags moveID={moveID} />
       </div>
     </div>
   );

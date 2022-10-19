@@ -11,6 +11,8 @@ import { GET_CHAR_DIFFICULTY } from "../../queries/GET_CHAR_DIFFICULTY";
 import { GET_CHAR_PLAYSTYLE } from "../../queries/GET_CHAR_PLAYSTYLE";
 import { GET_ALL_DIFFICULTIES } from "../../queries/GET_ALL_DIFFICULTIES";
 import { GET_NEW_PLAYSTYLES } from "../../queries/GET_NEW_PLAYSTYLES";
+import { GET_NEW_MOVE_TAGS } from "../../queries/GET_NEW_MOVE_TAGS";
+import { GET_MOVE_TAGS } from "../../queries/GET_MOVE_TAGS";
 
 const DeleteTagPopup = ({
   tagName,
@@ -42,7 +44,7 @@ const DeleteTagPopup = ({
     ignoreResults: true,
   });
   const [deleteMoveTag] = useMutation(DELETE_MOVE_TAG, {
-    refetchQueries: [GET_TAG_LIST],
+    refetchQueries: [GET_TAG_LIST, GET_NEW_MOVE_TAGS, GET_MOVE_TAGS],
     ignoreResults: true,
   });
   const [deleteComboTag] = useMutation(DELETE_COMBO_TAG, {

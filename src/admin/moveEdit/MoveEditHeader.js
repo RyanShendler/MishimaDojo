@@ -1,7 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { useState } from "react";
 import { GET_MOVE_HEADER } from "../../queries/GET_MOVE_HEADER";
-import { SET_MOVE_HEADER } from "../../mutations/SET_MOVE_HEADER";
 import Error from "../../utility/Error";
 import Loading from "../../utility/Loading";
 import MoveHeaderText from "./MoveHeaderText";
