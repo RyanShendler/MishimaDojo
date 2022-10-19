@@ -1,4 +1,4 @@
-const ComboEditLaunchers = () => {
+const ComboEditLaunchers = ({ comboID }) => {
   return (
     <div className="p-4">
       <div className="flex flex-row rounded-sm border border-black bg-[#EDF0F5] shadow-md">

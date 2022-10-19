@@ -25,10 +25,10 @@ const ComboEdit = () => {
         </Link>
       </div>
       <div className="flex min-w-[66%] flex-col rounded-md border border-black bg-content shadow-md">
-        <ComboEditHeader />
-        <ComboEditLaunchers />
-        <ComboEditInputs />
-        <ComboEditTags />
+        <ComboEditHeader comboID={comboID} />
+        <ComboEditLaunchers comboID={comboID} />
+        <ComboEditInputs comboID={comboID} />
+        <ComboEditTags comboID={comboID} />
       </div>
     </div>
   );

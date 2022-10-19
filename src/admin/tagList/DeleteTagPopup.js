@@ -13,6 +13,8 @@ import { GET_ALL_DIFFICULTIES } from "../../queries/GET_ALL_DIFFICULTIES";
 import { GET_NEW_PLAYSTYLES } from "../../queries/GET_NEW_PLAYSTYLES";
 import { GET_NEW_MOVE_TAGS } from "../../queries/GET_NEW_MOVE_TAGS";
 import { GET_MOVE_TAGS } from "../../queries/GET_MOVE_TAGS";
+import { GET_COMBO_TAGS } from "../../queries/GET_COMBO_TAGS";
+import { GET_NEW_COMBO_TAGS } from "../../queries/GET_NEW_COMBO_TAGS";
 
 const DeleteTagPopup = ({
   tagName,
@@ -48,7 +50,7 @@ const DeleteTagPopup = ({
     ignoreResults: true,
   });
   const [deleteComboTag] = useMutation(DELETE_COMBO_TAG, {
-    refetchQueries: [GET_TAG_LIST],
+    refetchQueries: [GET_TAG_LIST, GET_COMBO_TAGS, GET_NEW_COMBO_TAGS],
     ignoreResults: true,
   });
 
