@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { ADD_MOVE_TAG } from "../../mutations/ADD_MOVE_TAG";
+import { GET_MOVELIST } from "../../queries/GET_MOVELIST";
 import { GET_MOVE_TAGS } from "../../queries/GET_MOVE_TAGS";
 import { GET_NEW_MOVE_TAGS } from "../../queries/GET_NEW_MOVE_TAGS";
 import Error from "../../utility/Error";

@@ -38,7 +38,7 @@ const Header = () => {
 
   //setting position to absolute allows scrollbar to go over header
   return (
-    <header className="absolute inset-x-0 top-0 flex h-header-size flex-row items-center justify-between bg-header p-2">
+    <header className="fixed inset-x-0 top-0 flex h-header-size flex-row items-center justify-between bg-header p-2">
       <div ref={navRef} className="fixed">
         {showNavbar && <Navbar destroyNavbar={() => destroyNavbar()} />}
       </div>

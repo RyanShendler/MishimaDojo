@@ -18,7 +18,7 @@ const ComboTagEntry = ({ comboID, tagID, tagName, tagValue }) => {
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 48 48"
         width="100%"
-        className="max-w-[1.25rem] cursor-pointer fill-red-700"
+        className="max-w-[1.75rem] cursor-pointer fill-red-700"
         onClick={() => {
           removeTag({
             variables: {
