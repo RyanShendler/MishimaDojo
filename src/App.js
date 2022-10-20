@@ -11,6 +11,7 @@ import Legend from "./Legend";
 import Roster from "./Roster";
 import Search from "./Search";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import CharacterPage from "./charPage/CharacterPage";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/",
@@ -32,6 +33,7 @@ const App = () => {
               <Route path="/" element={<Roster />} />
               <Route path="/legend" element={<Legend />} />
               <Route path="/search" element={<Search />} />
+              <Route path="/characters/:charID" element={<CharacterPage />} />
               <Route path="/admin" element={<AdminLogin />} />
               <Route path="/admin/home" element={<AdminHome />} />
               <Route

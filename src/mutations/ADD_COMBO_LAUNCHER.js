@@ -23,6 +23,20 @@ export const ADD_COMBO_LAUNCHER = gql`
             "id": null
           }
         },
+        "connect": [
+          {
+            "tags": [
+              {
+                "where": {
+                  "node": {
+                    "tag": "Launcher",
+                    "value": null
+                  }
+                }
+              }
+            ]
+          }
+        ],
         "edge": {
           "type": null
         }

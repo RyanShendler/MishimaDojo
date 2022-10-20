@@ -1,17 +1,48 @@
+import { useQuery } from "@apollo/client";
+import { GET_CHAR_LIST } from "./queries/GET_CHAR_LIST";
 import RosterEntry from "./RosterEntry";
+import Error from "./utility/Error";
+import Loading from "./utility/Loading";
 
 const Roster = () => {
-  const roster = [];
-  for (let i = 0; i < 50; i++) {
-    roster.push(i);
-  }
+  const { data, loading, error } = useQuery(GET_CHAR_LIST, {
+    variables: {
+      options: {
+        sort: [
+          {
+            name: "ASC",
+          },
+        ],
+      },
+    },
+  });
+
   return (
     <div className="flex flex-col items-center space-y-4 p-4">
-      <h1 className="text-3xl">Roster</h1>
-      <div id="char-select" className="grid grid-cols-10 gap-6">
-        {roster.map((index) => {
-          return <RosterEntry key={index} />;
-        })}
+      <div className="flex min-w-[66%] flex-col rounded-md border border-black bg-content shadow-md">
+        <div className="flex w-full items-center justify-center bg-header p-2">
+          <h1 className="text-4xl text-[#F1F5F9]">Roster</h1>
+        </div>
+        {loading ? (
+          <Loading />
+        ) : error ? (
+          <Error />
+        ) : !data.characters.length ? (
+          <h3>No Characters</h3>
+        ) : (
+          <div id="char-select" className="grid grid-cols-10 gap-6 p-4">
+            {data.characters.map((char) => {
+              return (
+                <RosterEntry
+                  key={char.id}
+                  charID={char.id}
+                  charImage={char.imageURL}
+                  charName={char.name}
+                />
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

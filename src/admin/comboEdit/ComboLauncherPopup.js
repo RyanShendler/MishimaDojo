@@ -97,6 +97,20 @@ const ComboLauncherPopup = ({ comboID, charID, destroyPopup }) => {
                                 id: launcherID,
                               },
                             },
+                            connect: [
+                              {
+                                tags: [
+                                  {
+                                    where: {
+                                      node: {
+                                        tag: "Launcher",
+                                        value: type,
+                                      },
+                                    },
+                                  },
+                                ],
+                              },
+                            ],
                             edge: {
                               type: type,
                             },

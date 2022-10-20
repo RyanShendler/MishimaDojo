@@ -11,7 +11,17 @@ const CharacterList = () => {
   const destroyForm = () => {
     setShowForm(false);
   };
-  const { loading, error, data } = useQuery(GET_CHAR_LIST);
+  const { loading, error, data } = useQuery(GET_CHAR_LIST, {
+    variables: {
+      options: {
+        sort: [
+          {
+            name: "ASC",
+          },
+        ],
+      },
+    },
+  });
 
   return (
     <div className="flex w-2/3 flex-col rounded-sm border border-black bg-content shadow-md">

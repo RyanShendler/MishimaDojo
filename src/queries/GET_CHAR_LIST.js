@@ -3,8 +3,8 @@ import { gql } from "@apollo/client";
 //get a list of all characters in the database
 //return charID, name, and lastModified
 export const GET_CHAR_LIST = gql`
-  query GET_CHAR_LIST {
-    characters {
+  query GET_CHAR_LIST($options: CharacterOptions) {
+    characters(options: $options) {
       id
       name
       imageURL
@@ -13,5 +13,13 @@ export const GET_CHAR_LIST = gql`
 `;
 
 /*
-  no variables
- */
+{
+  "options": {
+    "sort": [
+      {
+        "name": "ASC"
+      }
+    ]
+  }
+}
+*/
