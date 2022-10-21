@@ -6,8 +6,17 @@ export const CREATE_COMBO = gql`
     $name: String!
     $type: String!
     $input: String!
+    $tagType: String!
+    $tagName: String!
   ) {
-    makeCombo(charID: $charId, name: $name, type: $type, input: $input) {
+    makeCombo(
+      charID: $charId
+      name: $name
+      type: $type
+      input: $input
+      tagType: $tagType
+      tagName: $tagName
+    ) {
       id
     }
   }
@@ -18,6 +27,8 @@ export const CREATE_COMBO = gql`
   "charId": null,
   "name": null,  
   "type": "Launcher",
-  "input": "Launcher"
+  "input": "Launcher",
+  "tagType": null,
+  "tagName": "Type"
 }
  */

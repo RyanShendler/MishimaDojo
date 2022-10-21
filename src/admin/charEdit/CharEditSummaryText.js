@@ -58,7 +58,9 @@ const CharEditSummaryText = ({ charID, charSummary }) => {
         </div>
       ) : (
         <div className="flex flex-row">
-          <pre className="w-full font-sans">{charSummary}</pre>
+          <pre className="w-full whitespace-pre-wrap font-sans">
+            {charSummary}
+          </pre>
           <div className="w-auto pl-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"

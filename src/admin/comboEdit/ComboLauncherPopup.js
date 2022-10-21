@@ -75,8 +75,6 @@ const ComboLauncherPopup = ({ comboID, charID, destroyPopup }) => {
               <option value={"Normal Hit"}>Normal Hit</option>
               <option value={"Counter Hit"}>Counter Hit</option>
               <option value={"Special Linker"}>Special Linker</option>
-              <option value={"Mini-Combo"}>Mini-Combo</option>
-              <option value={"Wall Combo"}>Wall Combo</option>
             </select>
           </label>
           <div className="flex items-center justify-evenly space-x-4">

@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { SET_COMBO_HEADER } from "../../mutations/SET_COMBO_HEADER";
+import { GET_CHAR_COMBO } from "../../queries/GET_CHAR_COMBO";
 import { GET_COMBOLIST } from "../../queries/GET_COMBOLIST";
 import { GET_COMBO_HEADER } from "../../queries/GET_COMBO_HEADER";
 
@@ -8,7 +9,7 @@ const ComboHeaderText = ({ comboID, comboName }) => {
   const [editing, setEditing] = useState(false);
   const [name, setName] = useState(comboName);
   const [setHeader] = useMutation(SET_COMBO_HEADER, {
-    refetchQueries: [GET_COMBO_HEADER, GET_COMBOLIST],
+    refetchQueries: [GET_COMBO_HEADER, GET_COMBOLIST, GET_CHAR_COMBO],
     ignoreResults: true,
   });
 

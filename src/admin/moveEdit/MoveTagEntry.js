@@ -2,10 +2,11 @@ import { useMutation } from "@apollo/client";
 import { REMOVE_MOVE_TAG } from "../../mutations/REMOVE_MOVE_TAG";
 import { GET_MOVE_TAGS } from "../../queries/GET_MOVE_TAGS";
 import { GET_NEW_MOVE_TAGS } from "../../queries/GET_NEW_MOVE_TAGS";
+import { GET_PUNISHERS } from "../../queries/GET_PUNISHERS";
 
 const MoveTagEntry = ({ moveID, tagID, tagName, tagValue }) => {
   const [removeTag] = useMutation(REMOVE_MOVE_TAG, {
-    refetchQueries: [GET_MOVE_TAGS, GET_NEW_MOVE_TAGS],
+    refetchQueries: [GET_MOVE_TAGS, GET_NEW_MOVE_TAGS, GET_PUNISHERS],
     ignoreResults: true,
   });
 

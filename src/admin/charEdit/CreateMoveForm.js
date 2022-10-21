@@ -4,12 +4,18 @@ import { CREATE_MOVE } from "../../mutations/CREATE_MOVE";
 import { GET_MOVELIST } from "../../queries/GET_MOVELIST";
 import { GET_NEW_LAUNCHERS } from "../../queries/GET_NEW_LAUNCHERS";
 import { GET_NONSTANCE_MOVES } from "../../queries/GET_NONSTANCE_MOVES";
+import { GET_STANCELESS } from "../../queries/GET_STANCELESS";
 
 const CreateMoveForm = ({ charID, destroyForm }) => {
   const [name, setName] = useState("");
   const [input, setInput] = useState("");
   const [createMove] = useMutation(CREATE_MOVE, {
-    refetchQueries: [GET_MOVELIST, GET_NONSTANCE_MOVES, GET_NEW_LAUNCHERS],
+    refetchQueries: [
+      GET_MOVELIST,
+      GET_NONSTANCE_MOVES,
+      GET_NEW_LAUNCHERS,
+      GET_STANCELESS,
+    ],
     ignoreResults: true,
   });
   return (

@@ -5,6 +5,8 @@ import { GET_COMBO_LAUNCHERS } from "../../queries/GET_COMBO_LAUNCHERS";
 import { GET_MOVELIST } from "../../queries/GET_MOVELIST";
 import { GET_NEW_LAUNCHERS } from "../../queries/GET_NEW_LAUNCHERS";
 import { GET_NONSTANCE_MOVES } from "../../queries/GET_NONSTANCE_MOVES";
+import { GET_PUNISHERS } from "../../queries/GET_PUNISHERS";
+import { GET_STANCELESS } from "../../queries/GET_STANCELESS";
 import { GET_STANCE_MOVES } from "../../queries/GET_STANCE_MOVES";
 
 const CharMoveRow = ({
@@ -20,6 +22,8 @@ const CharMoveRow = ({
       GET_STANCE_MOVES,
       GET_COMBO_LAUNCHERS,
       GET_NEW_LAUNCHERS,
+      GET_PUNISHERS,
+      GET_STANCELESS,
     ],
     ignoreResults: true,
   });

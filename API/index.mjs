@@ -130,11 +130,20 @@ const typeDefs = gql`
         """
       )
 
-    makeCombo(charID: ID!, name: String!, type: String!, input: String!): Combo
+    makeCombo(
+      charID: ID!
+      name: String!
+      type: String!
+      input: String!
+      tagType: String!
+      tagName: String!
+    ): Combo
       @cypher(
         statement: """
         MATCH (c:Character {id: $charID})
+        MATCH (t:ComboTag {tag: $tagName, value: $tagType})
         CREATE (c)-[:HAS_COMBO]->(n:Combo {id: randomuuid(), lastModified: datetime(), name: $name})-[:NEXT_MOVE]->(:ComboInput {id: randomuuid(), type: $type, input: $type})
+        CREATE (n)<-[:HAS_COMBO_TAG]-(t)
         RETURN n
         """
       )

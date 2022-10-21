@@ -2,10 +2,11 @@ import { useMutation } from "@apollo/client";
 import { DELETE_COMBO } from "../../mutations/DELETE_COMBO";
 import { GET_COMBOLIST } from "../../queries/GET_COMBOLIST";
 import { Link } from "react-router-dom";
+import { GET_CHAR_COMBO } from "../../queries/GET_CHAR_COMBO";
 
 const CharComboEntry = ({ charID, comboID, comboName }) => {
   const [deleteCombo] = useMutation(DELETE_COMBO, {
-    refetchQueries: [GET_COMBOLIST],
+    refetchQueries: [GET_COMBOLIST, GET_CHAR_COMBO],
     ignoreResults: true,
   });
 

@@ -19,7 +19,7 @@ const CharacterPage = () => {
       >
         Back to Roster
       </Link>
-      <div className="flex min-w-[66%] flex-row rounded-md border border-black bg-content shadow-md">
+      <div className="flex w-[66%] flex-row rounded-md border border-black bg-content shadow-md">
         <CharPageHeader charID={charID} />
         <div className="flex w-full flex-col">
           <nav className="flex w-full justify-evenly border-b border-black">
@@ -65,15 +65,15 @@ const CharacterPage = () => {
             </button>
           </nav>
           {component === "Punishers" ? (
-            <CharPagePunishers />
+            <CharPagePunishers charID={charID} />
           ) : component === "Combos" ? (
-            <CharPageCombos />
+            <CharPageCombos charID={charID} />
           ) : component === "Stances" ? (
-            <CharPageStances />
+            <CharPageStances charID={charID} />
           ) : component === "Movelist" ? (
-            <CharPageMovelist />
+            <CharPageMovelist charID={charID} />
           ) : (
-            <CharPageHome />
+            <CharPageHome charID={charID} />
           )}
         </div>
       </div>

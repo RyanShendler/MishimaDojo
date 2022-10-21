@@ -2,11 +2,12 @@ import { useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { REMOVE_STANCE_MOVE } from "../../mutations/REMOVE_STANCE_MOVE";
 import { GET_NONSTANCE_MOVES } from "../../queries/GET_NONSTANCE_MOVES";
+import { GET_STANCELESS } from "../../queries/GET_STANCELESS";
 import { GET_STANCE_MOVES } from "../../queries/GET_STANCE_MOVES";
 
 const StanceMoveEntry = ({ charID, moveID, stanceID, moveName, moveInput }) => {
   const [removeMove] = useMutation(REMOVE_STANCE_MOVE, {
-    refetchQueries: [GET_STANCE_MOVES, GET_NONSTANCE_MOVES],
+    refetchQueries: [GET_STANCE_MOVES, GET_NONSTANCE_MOVES, GET_STANCELESS],
     ignoreResults: true,
   });
 
