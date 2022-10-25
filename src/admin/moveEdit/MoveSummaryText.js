@@ -58,7 +58,9 @@ const MoveSummaryText = ({ moveID, moveSummary }) => {
         </div>
       ) : (
         <div className="flex flex-row">
-          <pre className="w-full font-sans">{moveSummary}</pre>
+          <pre className="w-full whitespace-pre-wrap font-sans">
+            {moveSummary}
+          </pre>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 48 48"

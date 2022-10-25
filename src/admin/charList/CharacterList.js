@@ -24,7 +24,7 @@ const CharacterList = () => {
   });
 
   return (
-    <div className="flex w-2/3 flex-col rounded-sm border border-black bg-content shadow-md">
+    <div className="flex w-1/3 flex-col rounded-sm border border-black bg-content shadow-md">
       <div className="flex w-full flex-row items-center justify-between space-x-4 p-2">
         <h1 className="text-2xl font-bold">Characters</h1>
         {showForm ? (
@@ -48,7 +48,7 @@ const CharacterList = () => {
         )}
       </div>
       {showForm && <CreateCharForm destroyForm={destroyForm} />}
-      <div className="grid grid-cols-3 gap-4 px-4 pt-2 pb-4">
+      <div className="grid grid-cols-2 gap-4 px-4 pt-2 pb-4">
         {loading ? (
           <Loading />
         ) : error ? (

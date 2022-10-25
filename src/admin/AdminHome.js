@@ -4,6 +4,7 @@ import CharacterList from "./charList/CharacterList";
 import Loading from "../utility/Loading";
 import Unauthorized from "../utility/Unauthorized";
 import TagList from "./tagList/TagList";
+import TermList from "./termList/TermList";
 
 const AdminHome = () => {
   const { logout, user, isAuthenticated, isLoading } = useAuth0();
@@ -35,6 +36,7 @@ const AdminHome = () => {
       <div className="flex w-full flex-row justify-center space-x-4">
         <CharacterList />
         <TagList />
+        <TermList />
       </div>
     </div>
   );

@@ -85,7 +85,9 @@ const CharPageMoveRow = ({ moveID, moveName, moveInput }) => {
         ) : !sumData.moves.length ? (
           "Move Not Found"
         ) : (
-          sumData.moves[0].summary
+          <pre className="whitespace-pre-wrap p-1 font-sans text-sm">
+            {sumData.moves[0].summary}
+          </pre>
         )}
       </td>
       <td className="border border-black text-center">
@@ -94,15 +96,18 @@ const CharPageMoveRow = ({ moveID, moveName, moveInput }) => {
         ) : tagError ? (
           <Error />
         ) : !tagData.moves.length ? (
-          "Move Not Found"
-        ) : !tagData.moves[0].tags.length ? (
-          "No Tags"
+          <h6>Move Not Found</h6>
         ) : (
-          tagData.moves[0].tags.reduce((prev, cur) => {
-            return !prev
-              ? `${cur.tag}(${cur.value})`
-              : prev + ", " + `${cur.tag}(${cur.value})`;
-          }, "")
+          <div className="flex flex-col">
+            {tagData.moves[0].tags.map((tag) => {
+              return (
+                <h6
+                  key={tag.id}
+                  className="text-sm"
+                >{`${tag.tag}(${tag.value})`}</h6>
+              );
+            })}
+          </div>
         )}
       </td>
     </tr>

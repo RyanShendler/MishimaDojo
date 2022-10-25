@@ -10,12 +10,7 @@ const CreateMoveForm = ({ charID, destroyForm }) => {
   const [name, setName] = useState("");
   const [input, setInput] = useState("");
   const [createMove] = useMutation(CREATE_MOVE, {
-    refetchQueries: [
-      GET_MOVELIST,
-      GET_NONSTANCE_MOVES,
-      GET_NEW_LAUNCHERS,
-      GET_STANCELESS,
-    ],
+    refetchQueries: [GET_MOVELIST, GET_NONSTANCE_MOVES, GET_NEW_LAUNCHERS],
     ignoreResults: true,
   });
   return (

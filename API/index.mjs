@@ -105,6 +105,13 @@ const typeDefs = gql`
     moves: [Move!]! @relationship(type: "HAS_MOVE_TAG", direction: OUT)
   }
 
+  type Term {
+    id: ID! @id
+    lastModified: DateTime! @timestamp
+    name: String!
+    description: String!
+  }
+
   type Mutation {
     setCharTag(charID: ID!, tagID: ID!, tag: String!): CharacterTag
       @cypher(

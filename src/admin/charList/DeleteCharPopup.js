@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { DELETE_CHARACTER } from "../../mutations/DELETE_CHARACTER";
 import { GET_CHAR_LIST } from "../../queries/GET_CHAR_LIST";
 import { useMutation } from "@apollo/client";
+import { GET_TIER_CHARS } from "../../queries/GET_TIER_CHARS";
 
 const DeleteCharPopup = ({ charName, charID, destroyPopup }) => {
   const elRef = useRef(null);
@@ -16,7 +17,7 @@ const DeleteCharPopup = ({ charName, charID, destroyPopup }) => {
   }, []);
 
   const [deleteCharacter] = useMutation(DELETE_CHARACTER, {
-    refetchQueries: [GET_CHAR_LIST],
+    refetchQueries: [GET_CHAR_LIST, GET_TIER_CHARS],
     ignoreResults: true,
   });
 

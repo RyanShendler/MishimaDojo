@@ -1,10 +1,12 @@
 import { useQuery } from "@apollo/client";
+import { useParams } from "react-router-dom";
 import { GET_CHAR_COMBO } from "../queries/GET_CHAR_COMBO";
 import Error from "../utility/Error";
 import Loading from "../utility/Loading";
 import CharPageComboEntry from "./CharPageComboEntry";
 
-const CharPageCombos = ({ charID }) => {
+const CharPageCombos = () => {
+  const { charID } = useParams();
   const {
     data: fullData,
     loading: fullLoading,
@@ -58,7 +60,7 @@ const CharPageCombos = ({ charID }) => {
   });
 
   return (
-    <div className="flex w-full flex-col p-2">
+    <div className="flex w-full flex-col overflow-y-auto p-2">
       <div className="mb-2 flex flex-col">
         <h3 className="text-xl font-bold">Combos</h3>
         {fullLoading ? (

@@ -1,9 +1,11 @@
 import { useQuery } from "@apollo/client";
+import { useParams } from "react-router-dom";
 import { GET_PUNISHERS } from "../queries/GET_PUNISHERS";
 import Error from "../utility/Error";
 import Loading from "../utility/Loading";
 
-const CharPagePunishers = ({ charID }) => {
+const CharPagePunishers = () => {
+  const { charID } = useParams();
   const {
     data: standData,
     loading: standLoading,
@@ -57,7 +59,7 @@ const CharPagePunishers = ({ charID }) => {
   });
 
   return (
-    <div className="grid w-full grid-cols-3 grid-rows-[auto_minmax(0,1fr)] p-2">
+    <div className="grid w-full grid-cols-3 grid-rows-[auto_minmax(0,1fr)] overflow-y-auto p-2">
       <div className="flex items-center justify-center">
         <h3 className="text-lg font-bold">Standing Punishers</h3>
       </div>

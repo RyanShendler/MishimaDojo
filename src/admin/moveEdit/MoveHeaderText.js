@@ -22,7 +22,6 @@ const MoveHeaderText = ({ moveID, moveName, moveInput }) => {
       GET_COMBO_LAUNCHERS,
       GET_NEW_LAUNCHERS,
       GET_PUNISHERS,
-      GET_STANCELESS,
     ],
     ignoreResults: true,
   });

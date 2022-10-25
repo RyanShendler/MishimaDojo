@@ -1,11 +1,13 @@
 import { useQuery } from "@apollo/client";
+import { useParams } from "react-router-dom";
 import { GET_CHAR_STRENGTHS } from "../queries/GET_CHAR_STRENGTHS";
 import { GET_CHAR_SUMMARY } from "../queries/GET_CHAR_SUMMARY";
 import { GET_CHAR_WEAKNESSES } from "../queries/GET_CHAR_WEAKNESSES";
 import Error from "../utility/Error";
 import Loading from "../utility/Loading";
 
-const CharPageHome = ({ charID }) => {
+const CharPageHome = () => {
+  const { charID } = useParams();
   const {
     data: sumData,
     loading: sumLoading,
@@ -41,7 +43,7 @@ const CharPageHome = ({ charID }) => {
   });
 
   return (
-    <div className="flex flex-col items-center p-2">
+    <div className="flex flex-col items-center overflow-y-auto p-2">
       {sumLoading ? (
         <Loading />
       ) : sumError ? (

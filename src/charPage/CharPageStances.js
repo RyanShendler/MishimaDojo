@@ -1,10 +1,12 @@
 import { useQuery } from "@apollo/client";
+import { useParams } from "react-router-dom";
 import { GET_STANCELIST } from "../queries/GET_STANCELIST";
 import Error from "../utility/Error";
 import Loading from "../utility/Loading";
 import CharPageStanceEntry from "./CharPageStanceEntry";
 
-const CharPageStances = ({ charID }) => {
+const CharPageStances = () => {
+  const { charID } = useParams();
   const { data, loading, error } = useQuery(GET_STANCELIST, {
     variables: {
       where: {
@@ -14,7 +16,7 @@ const CharPageStances = ({ charID }) => {
   });
 
   return (
-    <div className="flex h-full w-full flex-col space-y-2 p-2">
+    <div className="flex h-full w-full flex-col space-y-4 overflow-y-auto p-2">
       {loading ? (
         <Loading />
       ) : error ? (

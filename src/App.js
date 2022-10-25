@@ -7,11 +7,17 @@ import MoveEdit from "./admin/moveEdit/MoveEdit";
 import StanceEdit from "./admin/stanceEdit/StanceEdit";
 import ComboEdit from "./admin/comboEdit/ComboEdit";
 import Layout from "./Layout";
-import Legend from "./Legend";
+import Legend from "./legend/Legend";
 import Roster from "./Roster";
-import Search from "./Search";
+import Search from "./search/Search";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import CharacterPage from "./charPage/CharacterPage";
+import CharPageHome from "./charPage/CharPageHome";
+import CharPageMovelist from "./charPage/CharPageMovelist";
+import CharPageStances from "./charPage/CharPageStances";
+import CharPageCombos from "./charPage/CharPageCombos";
+import CharPagePunishers from "./charPage/CharPagePunishers";
+import TierList from "./tierList/TierList";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/",
@@ -33,7 +39,14 @@ const App = () => {
               <Route path="/" element={<Roster />} />
               <Route path="/legend" element={<Legend />} />
               <Route path="/search" element={<Search />} />
-              <Route path="/characters/:charID" element={<CharacterPage />} />
+              <Route path="/tier" element={<TierList />} />
+              <Route path="/characters/:charID" element={<CharacterPage />}>
+                <Route path="home" element={<CharPageHome />} />
+                <Route path="moves" element={<CharPageMovelist />} />
+                <Route path="stances" element={<CharPageStances />} />
+                <Route path="combos" element={<CharPageCombos />} />
+                <Route path="punishers" element={<CharPagePunishers />} />
+              </Route>
               <Route path="/admin" element={<AdminLogin />} />
               <Route path="/admin/home" element={<AdminHome />} />
               <Route

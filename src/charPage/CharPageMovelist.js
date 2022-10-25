@@ -1,10 +1,12 @@
 import { useQuery } from "@apollo/client";
+import { useParams } from "react-router-dom";
 import { GET_MOVELIST } from "../queries/GET_MOVELIST";
 import Error from "../utility/Error";
 import Loading from "../utility/Loading";
 import CharPageMoveRow from "./CharPageMoveRow";
 
-const CharPageMovelist = ({ charID }) => {
+const CharPageMovelist = () => {
+  const { charID } = useParams();
   const { data, loading, error } = useQuery(GET_MOVELIST, {
     variables: {
       where: {
@@ -14,7 +16,7 @@ const CharPageMovelist = ({ charID }) => {
   });
 
   return (
-    <div className="p-2">
+    <div className="overflow-auto p-2">
       {loading ? (
         <Loading />
       ) : error ? (
@@ -25,13 +27,13 @@ const CharPageMovelist = ({ charID }) => {
         <table className="w-full table-auto border-collapse border border-black">
           <tbody>
             <tr className="border border-black">
-              <th className="border border-black">Name</th>
-              <th className="border border-black">Input</th>
-              <th className="border border-black">Startup</th>
-              <th className="border border-black">Hit/CH/Block</th>
-              <th className="border border-black">{"Damage(Hit/CH)"}</th>
-              <th className="border border-black">Summary</th>
-              <th className="border border-black">Tags</th>
+              <th className="border border-black p-1">Name</th>
+              <th className="border border-black p-1">Input</th>
+              <th className="border border-black p-1">Startup</th>
+              <th className="border border-black p-1">Hit/CH/Block</th>
+              <th className="border border-black p-1">{"Damage(Hit/CH)"}</th>
+              <th className="border border-black p-1">Summary</th>
+              <th className="border border-black p-1">Tags</th>
             </tr>
             {!data.characters[0].moves.length ? (
               <tr className="border border-black">
@@ -44,7 +46,7 @@ const CharPageMovelist = ({ charID }) => {
                 <td className="border border-black text-center">N/A</td>
               </tr>
             ) : (
-              data.characters[0].moves.map((move) => {
+              data.characters[0].moves.map((move, index) => {
                 return (
                   <CharPageMoveRow
                     key={move.id}

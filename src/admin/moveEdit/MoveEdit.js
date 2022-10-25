@@ -24,7 +24,7 @@ const MoveEdit = () => {
           Back to Home Page
         </Link>
       </div>
-      <div className="flex min-w-[66%] flex-col rounded-md border border-black bg-content shadow-md">
+      <div className="flex w-[66%] flex-col rounded-md border border-black bg-content shadow-md">
         <div className="flex flex-row">
           <MoveEditHeader moveID={moveID} />
           <MoveEditProps moveID={moveID} />

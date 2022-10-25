@@ -4,11 +4,12 @@ import { createPortal } from "react-dom";
 import { EDIT_CHAR_IMAGE } from "../../mutations/EDIT_CHAR_IMAGE";
 import { GET_CHAR_IMAGE } from "../../queries/GET_CHAR_IMAGE";
 import { GET_CHAR_LIST } from "../../queries/GET_CHAR_LIST";
+import { GET_TIER_CHARS } from "../../queries/GET_TIER_CHARS";
 
 const EditImagePopup = ({ charID, charImage, destroyPopup }) => {
   const [image, setImage] = useState(charImage);
   const [editImage] = useMutation(EDIT_CHAR_IMAGE, {
-    refetchQueries: [GET_CHAR_LIST, GET_CHAR_IMAGE],
+    refetchQueries: [GET_CHAR_LIST, GET_CHAR_IMAGE, GET_TIER_CHARS],
     ignoreResults: true,
   });
 

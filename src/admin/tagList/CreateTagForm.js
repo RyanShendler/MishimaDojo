@@ -9,6 +9,8 @@ import { GET_ALL_DIFFICULTIES } from "../../queries/GET_ALL_DIFFICULTIES";
 import { GET_NEW_PLAYSTYLES } from "../../queries/GET_NEW_PLAYSTYLES";
 import { GET_NEW_MOVE_TAGS } from "../../queries/GET_NEW_MOVE_TAGS";
 import { GET_NEW_COMBO_TAGS } from "../../queries/GET_NEW_COMBO_TAGS";
+import { GET_ALL_PLAYSTYLES } from "../../queries/GET_ALL_PLAYSTYLES";
+import { GET_ALL_MOVE_TAGS } from "../../queries/GET_ALL_MOVE_TAGS";
 
 const TAG_TYPES = ["Character Tag", "Move Tag", "Combo Tag"];
 const CreateTagForm = ({ destroyForm }) => {
@@ -22,11 +24,12 @@ const CreateTagForm = ({ destroyForm }) => {
       GET_ALL_TIERS,
       GET_ALL_DIFFICULTIES,
       GET_NEW_PLAYSTYLES,
+      GET_ALL_PLAYSTYLES,
     ],
     ignoreResults: true,
   });
   const [createMoveTag] = useMutation(CREATE_MOVE_TAG, {
-    refetchQueries: [GET_TAG_LIST, GET_NEW_MOVE_TAGS],
+    refetchQueries: [GET_TAG_LIST, GET_NEW_MOVE_TAGS, GET_ALL_MOVE_TAGS],
     ignoreResults: true,
   });
   const [createComboTag] = useMutation(CREATE_COMBO_TAG, {

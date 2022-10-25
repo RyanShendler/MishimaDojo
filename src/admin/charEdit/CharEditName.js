@@ -3,12 +3,13 @@ import { useState } from "react";
 import { EDIT_CHAR_NAME } from "../../mutations/EDIT_CHAR_NAME";
 import { GET_CHAR_LIST } from "../../queries/GET_CHAR_LIST";
 import { GET_CHAR_NAME } from "../../queries/GET_CHAR_NAME";
+import { GET_TIER_CHARS } from "../../queries/GET_TIER_CHARS";
 
 const CharEditName = ({ charID, charName }) => {
   const [editing, setEditing] = useState(false);
   const [name, setName] = useState(charName);
   const [editName] = useMutation(EDIT_CHAR_NAME, {
-    refetchQueries: [GET_CHAR_NAME, GET_CHAR_LIST],
+    refetchQueries: [GET_CHAR_NAME, GET_CHAR_LIST, GET_TIER_CHARS],
     ignoreResults: true,
   });
 

@@ -15,9 +15,13 @@ const CharListEntry = ({ charID = "", charName = "", charImage = "" }) => {
           charName={charName}
         />
       )}
-      <div className="flex w-3/4 flex-row items-center justify-around rounded-l-sm border border-black bg-[#EDF0F5] p-1">
+      <div className="grid w-3/4 grid-cols-2 rounded-l-sm border border-black bg-[#EDF0F5] p-1">
         <img className="shrink" src={charImage} alt="Character Image" />
-        <h2 className="text-xl">{charName}</h2>
+        <div className="flex items-center justify-center">
+          <h2 className="whitespace-pre-wrap text-center text-xl">
+            {charName}
+          </h2>
+        </div>
       </div>
       <div className="flex w-1/4 flex-col items-center justify-evenly rounded-r-md border-y border-r border-black bg-header">
         <Link className="" to={`/admin/characters/${charID}`}>

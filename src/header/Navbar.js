@@ -20,6 +20,7 @@ const Navbar = ({ destroyNavbar }) => {
       <ul className="">
         <NavbarEntry path={"/"} name={"Roster"} />
         <NavbarEntry path={"/legend"} name={"Legend"} />
+        <NavbarEntry path={"/tier"} name={"Tier List"} />
       </ul>
     </nav>
   );
