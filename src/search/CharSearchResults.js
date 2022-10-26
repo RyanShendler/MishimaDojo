@@ -2,7 +2,7 @@ import CharResultsEntry from "./CharResultsEntry";
 
 const CharSearchResults = ({ results }) => {
   return (
-    <div className="mt-2 flex w-full items-center justify-center p-2">
+    <div className="flex w-full items-center justify-center p-2">
       {!results.length ? (
         <h3 className="text-center text-xl font-bold">No Results Found</h3>
       ) : (

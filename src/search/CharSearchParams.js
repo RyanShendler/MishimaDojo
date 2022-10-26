@@ -186,7 +186,9 @@ const CharSearchParams = () => {
       ) : charError ? (
         <Error />
       ) : (
-        <CharSearchResults results={charData.characters} />
+        <div className="mt-2 w-full">
+          <CharSearchResults results={charData.characters} />
+        </div>
       )}
     </div>
   );

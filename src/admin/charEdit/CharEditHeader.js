@@ -26,7 +26,7 @@ const CharEditHeader = ({ charID }) => {
   } = useQuery(GET_CHAR_NAME, variables);
 
   return (
-    <div className="flex flex-row items-center justify-evenly border-b border-r border-black">
+    <div className="flex flex-row items-center justify-center space-x-6 border-b border-r border-black p-1">
       {imageLoading ? (
         <Loading />
       ) : imageError ? (

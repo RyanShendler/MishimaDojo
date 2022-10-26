@@ -30,7 +30,7 @@ const Roster = () => {
         ) : !data.characters.length ? (
           <h3>No Characters</h3>
         ) : (
-          <div id="char-select" className="grid grid-cols-10 gap-6 p-4">
+          <div id="char-select" className="grid grid-cols-10 gap-4 p-4">
             {data.characters.map((char) => {
               return (
                 <RosterEntry

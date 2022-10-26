@@ -16,7 +16,9 @@ const CharListEntry = ({ charID = "", charName = "", charImage = "" }) => {
         />
       )}
       <div className="grid w-3/4 grid-cols-2 rounded-l-sm border border-black bg-[#EDF0F5] p-1">
-        <img className="shrink" src={charImage} alt="Character Image" />
+        <div className="flex items-center justify-center">
+          <img className="shrink" src={charImage} alt="Character Image" />
+        </div>
         <div className="flex items-center justify-center">
           <h2 className="whitespace-pre-wrap text-center text-xl">
             {charName}
