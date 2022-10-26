@@ -9,6 +9,9 @@ export const GET_CHAR_LIST = gql`
       name
       imageURL
     }
+    charactersAggregate {
+      count
+    }
   }
 `;
 
@@ -19,7 +22,9 @@ export const GET_CHAR_LIST = gql`
       {
         "name": "ASC"
       }
-    ]
+    ],
+    "limit": 8,
+    "offset": 0
   }
 }
 */

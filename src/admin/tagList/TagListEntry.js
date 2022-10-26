@@ -70,13 +70,13 @@ const TagListEntry = ({
       },
     };
     switch (tagType) {
-      case "characterTags":
+      case "CharacterTag":
         editCharTag(variables);
         break;
-      case "comboTags":
+      case "ComboTag":
         editComboTag(variables);
         break;
-      case "moveTags":
+      case "MoveTag":
         editMoveTag(variables);
         break;
     }
@@ -97,9 +97,9 @@ const TagListEntry = ({
         <h3 className="text-center text-lg font-bold">
           {
             {
-              characterTags: "Character Tag",
-              comboTags: "Combo Tag",
-              moveTags: "Move Tag",
+              CharacterTag: "Character Tag",
+              ComboTag: "Combo Tag",
+              MoveTag: "Move Tag",
             }[tagType]
           }
         </h3>

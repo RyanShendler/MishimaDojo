@@ -13,6 +13,7 @@ const CharSearchParams = () => {
   const [tier, setTier] = useState("");
   const [difficulty, setDifficulty] = useState("");
   const [playstyle, setPlaystyle] = useState("");
+  const [offset, setOffset] = useState(0);
   const [
     searchChars,
     {
@@ -20,6 +21,7 @@ const CharSearchParams = () => {
       loading: charLoading,
       error: charError,
       data: charData,
+      refetch,
     },
   ] = useLazyQuery(SEARCH_CHARS);
   const {
@@ -58,30 +60,20 @@ const CharSearchParams = () => {
 
   const getCharVars = () => {
     let vars = {
-      where: {
-        AND: [
-          {
-            AND: [
-              {
-                AND: [],
-              },
-            ],
-          },
-        ],
-      },
-      options: {
-        sort: [
-          {
-            name: "ASC",
-          },
-        ],
-      },
+      AND: [
+        {
+          AND: [
+            {
+              AND: [],
+            },
+          ],
+        },
+      ],
     };
-    if (name) vars.where.name = name;
-    if (tier) vars.where.AND[0].tags_SOME = { id: tier };
-    if (difficulty) vars.where.AND[0].AND[0].tags_SOME = { id: difficulty };
-    if (playstyle)
-      vars.where.AND[0].AND[0].AND[0] = { tags_SOME: { id: playstyle } };
+    if (name) vars.name = name;
+    if (tier) vars.AND[0].tags_SOME = { id: tier };
+    if (difficulty) vars.AND[0].AND[0].tags_SOME = { id: difficulty };
+    if (playstyle) vars.AND[0].AND[0].AND[0] = { tags_SOME: { id: playstyle } };
     return vars;
   };
 
@@ -92,7 +84,22 @@ const CharSearchParams = () => {
         onSubmit={(e) => {
           e.preventDefault();
           const variables = getCharVars();
-          searchChars({ variables: variables });
+          searchChars({
+            variables: {
+              where: variables,
+              options: {
+                sort: [
+                  {
+                    name: "ASC",
+                  },
+                ],
+                limit: 9,
+                offset: 0,
+              },
+              charactersAggregateWhere2: variables,
+            },
+          });
+          setOffset(0);
         }}
       >
         <label className="w-full text-center text-xl">
@@ -101,7 +108,9 @@ const CharSearchParams = () => {
             className="ml-2 min-w-[40%]"
             type="text"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
           />
         </label>
         {tierLoading ? (
@@ -114,7 +123,9 @@ const CharSearchParams = () => {
             <select
               className="ml-2 min-w-[40%]"
               value={tier}
-              onChange={(e) => setTier(e.target.value)}
+              onChange={(e) => {
+                setTier(e.target.value);
+              }}
             >
               <option value={""} />
               {tierData.characterTags.map((tag) => {
@@ -137,7 +148,9 @@ const CharSearchParams = () => {
             <select
               className="ml-2 min-w-[40%]"
               value={difficulty}
-              onChange={(e) => setDifficulty(e.target.value)}
+              onChange={(e) => {
+                setDifficulty(e.target.value);
+              }}
             >
               <option value={""} />
               {diffData.characterTags.map((tag) => {
@@ -160,7 +173,9 @@ const CharSearchParams = () => {
             <select
               className="ml-2 min-w-[40%]"
               value={playstyle}
-              onChange={(e) => setPlaystyle(e.target.value)}
+              onChange={(e) => {
+                setPlaystyle(e.target.value);
+              }}
             >
               <option value={""} />
               {playData.characterTags.map((tag) => {
@@ -188,6 +203,68 @@ const CharSearchParams = () => {
       ) : (
         <div className="mt-2 w-full">
           <CharSearchResults results={charData.characters} />
+          {!charData.characters.length ? (
+            <div></div>
+          ) : (
+            <div className="flex w-full justify-center">
+              <div className="flex w-2/3 flex-row justify-between p-2">
+                <button
+                  className="rounded-md bg-[#EDF0F5] p-1 shadow-md hover:bg-[#F7F8FA] disabled:bg-[#AAB1BB]"
+                  disabled={offset === 0}
+                  onClick={() => {
+                    refetch({
+                      options: {
+                        sort: [
+                          {
+                            name: "ASC",
+                          },
+                        ],
+                        limit: 9,
+                        offset: offset - 9,
+                      },
+                    });
+                    setOffset(offset - 9);
+                  }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 48 48"
+                    width="100%"
+                    className="max-w-[2.5rem]"
+                  >
+                    <path d="M28.05 36 16 23.95 28.05 11.9l2.15 2.15-9.9 9.9 9.9 9.9Z" />
+                  </svg>
+                </button>
+                <button
+                  className="rounded-md bg-[#EDF0F5] p-1 shadow-md hover:bg-[#F7F8FA] disabled:bg-[#AAB1BB]"
+                  disabled={offset + 9 >= charData.charactersAggregate.count}
+                  onClick={() => {
+                    refetch({
+                      options: {
+                        sort: [
+                          {
+                            name: "ASC",
+                          },
+                        ],
+                        limit: 9,
+                        offset: offset + 9,
+                      },
+                    });
+                    setOffset(offset + 9);
+                  }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 48 48"
+                    className="max-w-[2.5rem]"
+                    width="100%"
+                  >
+                    <path d="m18.75 36-2.15-2.15 9.9-9.9-9.9-9.9 2.15-2.15L30.8 23.95Z" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

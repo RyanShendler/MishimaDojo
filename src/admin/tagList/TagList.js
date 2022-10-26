@@ -7,7 +7,9 @@ import CreateTagForm from "./CreateTagForm";
 import TagListEntry from "./TagListEntry";
 
 const TagList = () => {
-  const { loading, error, data } = useQuery(GET_TAG_LIST);
+  const { loading, error, data } = useQuery(GET_TAG_LIST, {
+    variables: { offset: 0, limit: 10 },
+  });
   const [showForm, setShowForm] = useState(false);
   const destroyForm = () => {
     setShowForm(false);
@@ -41,25 +43,19 @@ const TagList = () => {
           <Loading />
         ) : error ? (
           <Error />
-        ) : !data.characterTags.length &&
-          !data.comboTags.length &&
-          !data.moveTags.length ? (
+        ) : !data.getTagList ? (
           <h1>No Tags</h1>
         ) : (
-          Object.keys(data).map((type) => {
-            return !data[type].length
-              ? null
-              : data[type].map((tag) => {
-                  return (
-                    <TagListEntry
-                      key={tag.id}
-                      tagID={tag.id}
-                      tagName={tag.tag}
-                      tagType={type}
-                      tagValue={tag.value}
-                    />
-                  );
-                });
+          data.getTagList.map((tag) => {
+            return (
+              <TagListEntry
+                key={tag.id}
+                tagID={tag.id}
+                tagName={tag.tag}
+                tagValue={tag.value}
+                tagType={tag.__typename}
+              />
+            );
           })
         )}
       </div>

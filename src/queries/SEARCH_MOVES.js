@@ -1,7 +1,11 @@
 import { gql } from "@apollo/client";
 
 export const SEARCH_MOVES = gql`
-  query SEARCH_MOVES($where: MoveWhere, $options: MoveOptions) {
+  query SEARCH_MOVES(
+    $where: MoveWhere
+    $options: MoveOptions
+    $movesAggregateWhere2: MoveWhere
+  ) {
     moves(where: $where, options: $options) {
       id
       name
@@ -9,6 +13,9 @@ export const SEARCH_MOVES = gql`
       users {
         id
       }
+    }
+    movesAggregate(where: $movesAggregateWhere2) {
+      count
     }
   }
 `;
@@ -22,8 +29,7 @@ export const SEARCH_MOVES = gql`
           {
             "AND": [
               {
-                "AND": [
-                ]
+                "AND": []
               }
             ]
           }
@@ -35,6 +41,23 @@ export const SEARCH_MOVES = gql`
     "sort": [
       {
         "name": "ASC"
+      }
+    ],
+    "limit": 12,
+    "offset": 0
+  },
+  "movesAggregateWhere2": {
+    "AND": [
+      {
+        "AND": [
+          {
+            "AND": [
+              {
+                "AND": []
+              }
+            ]
+          }
+        ]
       }
     ]
   }

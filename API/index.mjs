@@ -69,6 +69,8 @@ const typeDefs = gql`
     type: String!
   }
 
+  union Tag = CharacterTag | ComboTag | MoveTag
+
   type Stance {
     id: ID! @id
     lastModified: DateTime! @timestamp
@@ -204,6 +206,17 @@ const typeDefs = gql`
         statement: """
         MATCH (:Combo {id: $comboID})-[:NEXT_MOVE*]->(n)
         RETURN n
+        """
+      )
+
+    getTagList(offset: Int!, limit: Int!): [Tag!]!
+      @cypher(
+        statement: """
+        MATCH (n)
+        WHERE n:MoveTag OR n:ComboTag OR n:CharacterTag
+        RETURN n
+        SKIP $offset
+        LIMIT $limit
         """
       )
   }
