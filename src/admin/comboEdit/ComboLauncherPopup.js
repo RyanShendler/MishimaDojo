@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { ADD_COMBO_LAUNCHER } from "../../mutations/ADD_COMBO_LAUNCHER";
+import { GET_CHAR_COMBO } from "../../queries/GET_CHAR_COMBO";
 import { GET_COMBO_LAUNCHERS } from "../../queries/GET_COMBO_LAUNCHERS";
 import { GET_NEW_LAUNCHERS } from "../../queries/GET_NEW_LAUNCHERS";
 import Error from "../../utility/Error";
@@ -30,7 +31,7 @@ const ComboLauncherPopup = ({ comboID, charID, destroyPopup }) => {
     },
   });
   const [addLauncher] = useMutation(ADD_COMBO_LAUNCHER, {
-    refetchQueries: [GET_NEW_LAUNCHERS, GET_COMBO_LAUNCHERS],
+    refetchQueries: [GET_NEW_LAUNCHERS, GET_COMBO_LAUNCHERS, GET_CHAR_COMBO],
     ignoreResults: true,
   });
   const [launcherID, setLauncherID] = useState("");

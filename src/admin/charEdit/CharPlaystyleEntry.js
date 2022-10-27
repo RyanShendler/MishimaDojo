@@ -1,12 +1,13 @@
 import { useMutation } from "@apollo/client";
 import { REMOVE_CHAR_PLAYSTYLE } from "../../mutations/REMOVE_CHAR_PLAYSTYLE";
+import { GET_CHAR_HEADER } from "../../queries/GET_CHAR_HEADER";
 import { GET_CHAR_PLAYSTYLE } from "../../queries/GET_CHAR_PLAYSTYLE";
 import { GET_NEW_PLAYSTYLES } from "../../queries/GET_NEW_PLAYSTYLES";
 
 //charPlaystyle is an object with keys id and value
 const CharPlaystyleEntry = ({ charID, charPlaystyle }) => {
   const [removePlaystyle] = useMutation(REMOVE_CHAR_PLAYSTYLE, {
-    refetchQueries: [GET_NEW_PLAYSTYLES, GET_CHAR_PLAYSTYLE],
+    refetchQueries: [GET_NEW_PLAYSTYLES, GET_CHAR_PLAYSTYLE, GET_CHAR_HEADER],
     ignoreResults: true,
   });
 

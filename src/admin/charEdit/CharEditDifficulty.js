@@ -6,6 +6,7 @@ import { GET_CHAR_DIFFICULTY } from "../../queries/GET_CHAR_DIFFICULTY";
 import { DELETE_CHAR_DIFFICULTY } from "../../mutations/DELETE_CHAR_DIFFICULTY";
 import Error from "../../utility/Error";
 import Loading from "../../utility/Loading";
+import { GET_CHAR_HEADER } from "../../queries/GET_CHAR_HEADER";
 
 //charTier is an object with keys id and value
 const CharEditDifficulty = ({ charID, charDifficulty }) => {
@@ -19,11 +20,11 @@ const CharEditDifficulty = ({ charID, charDifficulty }) => {
     },
   });
   const [editDifficulty] = useMutation(SET_CHAR_DIFFICULTY, {
-    refetchQueries: [GET_CHAR_DIFFICULTY],
+    refetchQueries: [GET_CHAR_DIFFICULTY, GET_CHAR_HEADER],
     ignoreResults: true,
   });
   const [deleteDifficulty] = useMutation(DELETE_CHAR_DIFFICULTY, {
-    refetchQueries: [GET_CHAR_DIFFICULTY],
+    refetchQueries: [GET_CHAR_DIFFICULTY, GET_CHAR_HEADER],
     ignoreResults: true,
   });
 

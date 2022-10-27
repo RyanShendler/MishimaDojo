@@ -1,8 +1,10 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 
 const Header = () => {
+  const { isLoading, isAuthenticated, user } = useAuth0();
   const [showNavbar, setShowNavbar] = useState(false);
   const destroyNavbar = () => {
     setShowNavbar(false);
@@ -61,7 +63,20 @@ const Header = () => {
           </h1>
         </Link>
       </div>
-      <div className="pr-2">
+      <div className="flex flex-row pr-2">
+        {isLoading ? (
+          <div></div>
+        ) : !isAuthenticated ? (
+          <div></div>
+        ) : (
+          user["https://mishimadojo.com/metadata"].admin && (
+            <Link to={"/admin/home"}>
+              <button className="mr-4 rounded-sm border border-white p-1 text-lg text-white hover:bg-[#64748B]">
+                Admin
+              </button>
+            </Link>
+          )
+        )}
         <Link to={"/search"}>
           <svg
             className="cursor-pointer fill-[#CBD5E1] hover:bg-[#64748B]"

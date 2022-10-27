@@ -79,6 +79,8 @@ const CharPageCombos = () => {
                   key={combo.id}
                   comboID={combo.id}
                   comboName={combo.name}
+                  comboLaunchers={combo.launchers}
+                  comboTags={combo.tags}
                 />
               );
             })}
@@ -103,6 +105,8 @@ const CharPageCombos = () => {
                   key={combo.id}
                   comboID={combo.id}
                   comboName={combo.name}
+                  comboLaunchers={combo.launchers}
+                  comboTags={combo.tags}
                 />
               );
             })}
@@ -127,6 +131,8 @@ const CharPageCombos = () => {
                   key={combo.id}
                   comboID={combo.id}
                   comboName={combo.name}
+                  comboLaunchers={combo.launchers}
+                  comboTags={combo.tags}
                 />
               );
             })}

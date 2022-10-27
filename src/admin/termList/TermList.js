@@ -7,9 +7,10 @@ import CreateTermForm from "./CreateTermForm";
 import TermListEntry from "./TermListEntry";
 
 const TermList = () => {
+  const [offset, setOffset] = useState(0);
   const [showForm, setShowForm] = useState(false);
   const destroyForm = () => setShowForm(false);
-  const { data, loading, error } = useQuery(GET_TERM_LIST, {
+  const { data, loading, error, refetch } = useQuery(GET_TERM_LIST, {
     variables: {
       options: {
         sort: [
@@ -17,6 +18,8 @@ const TermList = () => {
             name: "ASC",
           },
         ],
+        limit: 6,
+        offset: 0,
       },
     },
   });
@@ -44,15 +47,15 @@ const TermList = () => {
         )}
       </div>
       {showForm && <CreateTermForm destroyForm={destroyForm} />}
-      <div className="grid grid-cols-2 gap-4 px-4 pt-2 pb-4">
-        {loading ? (
-          <Loading />
-        ) : error ? (
-          <Error />
-        ) : !data.terms.length ? (
-          <h3>No Terms</h3>
-        ) : (
-          data.terms.map((term) => {
+      {loading ? (
+        <Loading />
+      ) : error ? (
+        <Error />
+      ) : !data.terms.length ? (
+        <h3>No Terms</h3>
+      ) : (
+        <div className="grid grid-cols-2 gap-4 px-4 pt-2 pb-4">
+          {data.terms.map((term) => {
             return (
               <TermListEntry
                 key={term.id}
@@ -61,9 +64,65 @@ const TermList = () => {
                 termDescription={term.description}
               />
             );
-          })
-        )}
-      </div>
+          })}
+          <div className="col-span-2 flex flex-row justify-between p-2">
+            <button
+              className="rounded-md bg-[#EDF0F5] p-1 shadow-md hover:bg-[#F7F8FA] disabled:bg-[#AAB1BB]"
+              disabled={offset === 0}
+              onClick={() => {
+                refetch({
+                  options: {
+                    sort: [
+                      {
+                        name: "ASC",
+                      },
+                    ],
+                    limit: 6,
+                    offset: offset - 6,
+                  },
+                });
+                setOffset(offset - 6);
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 48 48"
+                width="100%"
+                className="max-w-[2.5rem]"
+              >
+                <path d="M28.05 36 16 23.95 28.05 11.9l2.15 2.15-9.9 9.9 9.9 9.9Z" />
+              </svg>
+            </button>
+            <button
+              className="rounded-md bg-[#EDF0F5] p-1 shadow-md hover:bg-[#F7F8FA] disabled:bg-[#AAB1BB]"
+              disabled={offset + 6 >= data.termsAggregate.count}
+              onClick={() => {
+                refetch({
+                  options: {
+                    sort: [
+                      {
+                        name: "ASC",
+                      },
+                    ],
+                    limit: 6,
+                    offset: offset + 6,
+                  },
+                });
+                setOffset(offset + 6);
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 48 48"
+                className="max-w-[2.5rem]"
+                width="100%"
+              >
+                <path d="m18.75 36-2.15-2.15 9.9-9.9-9.9-9.9 2.15-2.15L30.8 23.95Z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

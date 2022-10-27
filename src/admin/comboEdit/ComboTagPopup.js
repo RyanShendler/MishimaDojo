@@ -6,6 +6,7 @@ import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import Loading from "../../utility/Loading";
 import Error from "../../utility/Error";
+import { GET_CHAR_COMBO } from "../../queries/GET_CHAR_COMBO";
 
 const ComboTagPopup = ({ comboID, destroyPopup }) => {
   const elRef = useRef(null);
@@ -27,7 +28,7 @@ const ComboTagPopup = ({ comboID, destroyPopup }) => {
     },
   });
   const [addTag] = useMutation(ADD_COMBO_TAG, {
-    refetchQueries: [GET_COMBO_TAGS, GET_NEW_COMBO_TAGS],
+    refetchQueries: [GET_COMBO_TAGS, GET_NEW_COMBO_TAGS, GET_CHAR_COMBO],
     ignoreResults: true,
   });
   const [tagID, setTagID] = useState("");

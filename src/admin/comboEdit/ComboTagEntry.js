@@ -1,11 +1,12 @@
 import { useMutation } from "@apollo/client";
 import { REMOVE_COMBO_TAG } from "../../mutations/REMOVE_COMBO_TAG";
+import { GET_CHAR_COMBO } from "../../queries/GET_CHAR_COMBO";
 import { GET_COMBO_TAGS } from "../../queries/GET_COMBO_TAGS";
 import { GET_NEW_COMBO_TAGS } from "../../queries/GET_NEW_COMBO_TAGS";
 
 const ComboTagEntry = ({ comboID, tagID, tagName, tagValue }) => {
   const [removeTag] = useMutation(REMOVE_COMBO_TAG, {
-    refetchQueries: [GET_COMBO_TAGS, GET_NEW_COMBO_TAGS],
+    refetchQueries: [GET_COMBO_TAGS, GET_NEW_COMBO_TAGS, GET_CHAR_COMBO],
     ignoreResults: true,
   });
   return (

@@ -6,6 +6,7 @@ import { ADD_CHAR_PLAYSTYLE } from "../../mutations/ADD_CHAR_PLAYSTYLE";
 import { GET_CHAR_PLAYSTYLE } from "../../queries/GET_CHAR_PLAYSTYLE";
 import Loading from "../../utility/Loading";
 import Error from "../../utility/Error";
+import { GET_CHAR_HEADER } from "../../queries/GET_CHAR_HEADER";
 
 const CreatePlaystylePopup = ({ charID, destroyPopup }) => {
   const elRef = useRef(null);
@@ -28,7 +29,7 @@ const CreatePlaystylePopup = ({ charID, destroyPopup }) => {
     },
   });
   const [addPlaystyle] = useMutation(ADD_CHAR_PLAYSTYLE, {
-    refetchQueries: [GET_CHAR_PLAYSTYLE, GET_NEW_PLAYSTYLES],
+    refetchQueries: [GET_CHAR_PLAYSTYLE, GET_NEW_PLAYSTYLES, GET_CHAR_HEADER],
     ignoreResults: true,
   });
   const [playstyle, setPlaystyle] = useState("");

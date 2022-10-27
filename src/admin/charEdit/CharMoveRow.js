@@ -2,6 +2,7 @@ import { useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { DELETE_MOVE } from "../../mutations/DELETE_MOVE";
 import { GET_COMBO_LAUNCHERS } from "../../queries/GET_COMBO_LAUNCHERS";
+import { GET_FULL_MOVELIST } from "../../queries/GET_FULL_MOVELIST";
 import { GET_MOVELIST } from "../../queries/GET_MOVELIST";
 import { GET_NEW_LAUNCHERS } from "../../queries/GET_NEW_LAUNCHERS";
 import { GET_NONSTANCE_MOVES } from "../../queries/GET_NONSTANCE_MOVES";
@@ -23,6 +24,7 @@ const CharMoveRow = ({
       GET_COMBO_LAUNCHERS,
       GET_NEW_LAUNCHERS,
       GET_PUNISHERS,
+      GET_FULL_MOVELIST,
     ],
     ignoreResults: true,
   });
@@ -41,10 +43,10 @@ const CharMoveRow = ({
         ) : (
           <div className="min-h-[1.5rem]">
             <Link
-              className="rounded-md bg-green-600 p-1 text-white"
+              className="text-center text-[#0000EE] underline"
               to={`/admin/characters/${charID}/moves/${moveID}`}
             >
-              Edit
+              edit
             </Link>
           </div>
         )}
@@ -55,7 +57,7 @@ const CharMoveRow = ({
         ) : (
           <div className="min-h-[1.5rem]">
             <button
-              className="rounded-md bg-red-600 p-1 text-white"
+              className="text-center text-red-600"
               onClick={() =>
                 deleteMove({
                   variables: {

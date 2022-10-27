@@ -7,6 +7,7 @@ import { DELETE_CHAR_TIER } from "../../mutations/DELETE_CHAR_TIER";
 import Error from "../../utility/Error";
 import Loading from "../../utility/Loading";
 import { GET_TIER_CHARS } from "../../queries/GET_TIER_CHARS";
+import { GET_CHAR_HEADER } from "../../queries/GET_CHAR_HEADER";
 
 //charTier is an object with keys id and value
 const CharEditTier = ({ charID, charTier }) => {
@@ -20,11 +21,11 @@ const CharEditTier = ({ charID, charTier }) => {
     },
   });
   const [editTier] = useMutation(SET_CHAR_TIER, {
-    refetchQueries: [GET_CHAR_TIER, GET_TIER_CHARS],
+    refetchQueries: [GET_CHAR_TIER, GET_TIER_CHARS, GET_CHAR_HEADER],
     ignoreResults: true,
   });
   const [deleteTier] = useMutation(DELETE_CHAR_TIER, {
-    refetchQueries: [GET_CHAR_TIER, GET_TIER_CHARS],
+    refetchQueries: [GET_CHAR_TIER, GET_TIER_CHARS, GET_CHAR_HEADER],
     ignoreResults: true,
   });
 

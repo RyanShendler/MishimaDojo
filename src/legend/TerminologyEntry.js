@@ -4,7 +4,7 @@ const TerminologyEntry = ({ name, description }) => {
   const [showDescription, setShowDescription] = useState(false);
   return (
     <div
-      className="inline-flex w-1/4 flex-col items-center justify-center overflow-clip rounded-md border border-black bg-[#EDF0F5] shadow-md"
+      className="ml-4 mb-4 inline-flex w-1/4 flex-col items-center justify-center overflow-clip rounded-md border border-black bg-[#EDF0F5] shadow-md"
       onMouseEnter={() => setShowDescription(true)}
       onMouseLeave={() => setShowDescription(false)}
     >

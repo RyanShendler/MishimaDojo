@@ -1,5 +1,5 @@
 import { Auth0Provider } from "@auth0/auth0-react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import AdminHome from "./admin/AdminHome";
 import AdminLogin from "./admin/AdminLogin";
 import CharacterEdit from "./admin/charEdit/CharacterEdit";
@@ -47,25 +47,24 @@ const App = () => {
                 <Route path="combos" element={<CharPageCombos />} />
                 <Route path="punishers" element={<CharPagePunishers />} />
               </Route>
-              <Route path="/admin" element={<AdminLogin />} />
-              <Route path="/admin/home" element={<AdminHome />} />
-              <Route
-                path="/admin/characters/:charID"
-                element={<CharacterEdit />}
-              />
-              <Route
-                path="/admin/characters/:charID/moves/:moveID"
-                element={<MoveEdit />}
-              />
-              <Route
-                path="/admin/characters/:charID/stances/:stanceID"
-                element={<StanceEdit />}
-              />
-              <Route
-                path="/admin/characters/:charID/combos/:comboID"
-                element={<ComboEdit />}
-              />
+              <Route path="/admin" element={<AdminLogin />}>
+                <Route path="home" element={<AdminHome />} />
+                <Route path="characters/:charID" element={<CharacterEdit />} />
+                <Route
+                  path="characters/:charID/moves/:moveID"
+                  element={<MoveEdit />}
+                />
+                <Route
+                  path="characters/:charID/stances/:stanceID"
+                  element={<StanceEdit />}
+                />
+                <Route
+                  path="characters/:charID/combos/:comboID"
+                  element={<ComboEdit />}
+                />
+              </Route>
             </Route>
+            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </BrowserRouter>
       </ApolloProvider>

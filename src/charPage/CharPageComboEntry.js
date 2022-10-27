@@ -5,18 +5,12 @@ import { GET_COMBO_TAGS } from "../queries/GET_COMBO_TAGS";
 import Error from "../utility/Error";
 import Loading from "../utility/Loading";
 
-const CharPageComboEntry = ({ comboID, comboName }) => {
-  const {
-    data: tagData,
-    loading: tagLoading,
-    error: tagError,
-  } = useQuery(GET_COMBO_TAGS, {
-    variables: {
-      where: {
-        id: comboID,
-      },
-    },
-  });
+const CharPageComboEntry = ({
+  comboID,
+  comboName,
+  comboTags,
+  comboLaunchers,
+}) => {
   const {
     data: inputData,
     loading: inputLoading,
@@ -24,17 +18,6 @@ const CharPageComboEntry = ({ comboID, comboName }) => {
   } = useQuery(GET_COMBO_INPUTS, {
     variables: {
       comboId: comboID,
-    },
-  });
-  const {
-    data: launchData,
-    loading: launchLoading,
-    error: launchError,
-  } = useQuery(GET_COMBO_LAUNCHERS, {
-    variables: {
-      where: {
-        id: comboID,
-      },
     },
   });
 
@@ -63,15 +46,11 @@ const CharPageComboEntry = ({ comboID, comboName }) => {
       <div className="ml-2 flex">
         <h4 className="">Launchers: </h4>
         <div>
-          {launchLoading ? (
-            <Loading />
-          ) : launchError ? (
-            <Error />
-          ) : !launchData.combos[0].launchers.length ? (
+          {!comboLaunchers.length ? (
             <h4>No Launchers</h4>
           ) : (
             <h4>
-              {launchData.combos[0].launchers.reduce((prev, cur) => {
+              {comboLaunchers.reduce((prev, cur) => {
                 return !prev ? cur.input : prev + " " + cur.input;
               }, "")}
             </h4>
@@ -81,15 +60,11 @@ const CharPageComboEntry = ({ comboID, comboName }) => {
       <div className="ml-2 flex">
         <h4>Tags: </h4>
         <div>
-          {tagLoading ? (
-            <Loading />
-          ) : tagError ? (
-            <Error />
-          ) : !tagData.combos[0].tags.length ? (
+          {!comboTags.length ? (
             <h4>No Tags</h4>
           ) : (
             <h4>
-              {tagData.combos[0].tags.reduce((prev, cur) => {
+              {comboTags.reduce((prev, cur) => {
                 return !prev ? cur.value : prev + ", " + cur.value;
               }, "")}
             </h4>

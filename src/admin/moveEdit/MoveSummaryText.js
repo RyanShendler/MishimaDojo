@@ -1,13 +1,14 @@
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { SET_MOVE_SUMMARY } from "../../mutations/SET_MOVE_SUMMARY";
+import { GET_FULL_MOVELIST } from "../../queries/GET_FULL_MOVELIST";
 import { GET_MOVE_SUMMARY } from "../../queries/GET_MOVE_SUMMARY";
 
 const MoveSummaryText = ({ moveID, moveSummary }) => {
   const [editing, setEditing] = useState(false);
   const [summary, setSummary] = useState(moveSummary);
   const [editSummary] = useMutation(SET_MOVE_SUMMARY, {
-    refetchQueries: [GET_MOVE_SUMMARY],
+    refetchQueries: [GET_MOVE_SUMMARY, GET_FULL_MOVELIST],
     ignoreResults: true,
   });
 

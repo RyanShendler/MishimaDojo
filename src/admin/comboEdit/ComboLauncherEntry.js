@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { REMOVE_COMBO_LAUNCHER } from "../../mutations/REMOVE_COMBO_LAUNCHER";
+import { GET_CHAR_COMBO } from "../../queries/GET_CHAR_COMBO";
 import { GET_COMBO_LAUNCHERS } from "../../queries/GET_COMBO_LAUNCHERS";
 import { GET_NEW_LAUNCHERS } from "../../queries/GET_NEW_LAUNCHERS";
 
@@ -13,7 +14,7 @@ const ComboLauncherEntry = ({
   launcherType,
 }) => {
   const [removeLauncher] = useMutation(REMOVE_COMBO_LAUNCHER, {
-    refetchQueries: [GET_COMBO_LAUNCHERS, GET_NEW_LAUNCHERS],
+    refetchQueries: [GET_COMBO_LAUNCHERS, GET_NEW_LAUNCHERS, GET_CHAR_COMBO],
     ignoreResults: true,
   });
   return (

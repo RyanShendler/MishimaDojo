@@ -215,8 +215,18 @@ const typeDefs = gql`
         MATCH (n)
         WHERE n:MoveTag OR n:ComboTag OR n:CharacterTag
         RETURN n
+        ORDER BY n.tag, n.value
         SKIP $offset
         LIMIT $limit
+        """
+      )
+
+    getTagCount: Int!
+      @cypher(
+        statement: """
+        MATCH (n)
+        WHERE n:MoveTag OR n:ComboTag OR n:CharacterTag
+        RETURN count(n)
         """
       )
   }

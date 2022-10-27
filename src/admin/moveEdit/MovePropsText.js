@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { SET_MOVE_PROPS } from "../../mutations/SET_MOVE_PROPS";
+import { GET_FULL_MOVELIST } from "../../queries/GET_FULL_MOVELIST";
 import { GET_MOVE_PROPS } from "../../queries/GET_MOVE_PROPS";
 import { GET_PUNISHERS } from "../../queries/GET_PUNISHERS";
 
@@ -21,7 +22,7 @@ const MovePropsText = ({
   const [onCH, setOnCH] = useState(moveCH);
   const [onBlock, setOnBlock] = useState(moveBlock);
   const [setProps] = useMutation(SET_MOVE_PROPS, {
-    refetchQueries: [GET_MOVE_PROPS, GET_PUNISHERS],
+    refetchQueries: [GET_MOVE_PROPS, GET_PUNISHERS, GET_FULL_MOVELIST],
     ignoreResults: true,
   });
 

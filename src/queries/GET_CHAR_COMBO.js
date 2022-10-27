@@ -6,6 +6,12 @@ export const GET_CHAR_COMBO = gql`
       combos(where: $combosWhere2) {
         id
         name
+        launchers {
+          input
+        }
+        tags {
+          value
+        }
       }
     }
   }

@@ -7,6 +7,9 @@ export const GET_TERM_LIST = gql`
       name
       description
     }
+    termsAggregate {
+      count
+    }
   }
 `;
 
@@ -17,7 +20,9 @@ export const GET_TERM_LIST = gql`
       {
         "name": "ASC"
       }
-    ]
+    ],
+    "limit": 6,
+    "offset": null
   }
 }
 */
