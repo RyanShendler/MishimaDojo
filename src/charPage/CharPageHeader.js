@@ -1,14 +1,13 @@
 import { useQuery } from "@apollo/client";
-import { GET_CHAR_DIFFICULTY } from "../queries/GET_CHAR_DIFFICULTY";
+import { useState } from "react";
 import { GET_CHAR_HEADER } from "../queries/GET_CHAR_HEADER";
-import { GET_CHAR_IMAGE } from "../queries/GET_CHAR_IMAGE";
-import { GET_CHAR_NAME } from "../queries/GET_CHAR_NAME";
-import { GET_CHAR_PLAYSTYLE } from "../queries/GET_CHAR_PLAYSTYLE";
-import { GET_CHAR_TIER } from "../queries/GET_CHAR_TIER";
 import Error from "../utility/Error";
 import Loading from "../utility/Loading";
+import ArchetypeChart from "./ArchetypeChart";
+import CharPageHeaderSkeleton from "./CharPageHeaderSkeleton";
 
 const CharPageHeader = ({ charID }) => {
+  const [imgLoading, setImgLoading] = useState(true);
   const { data, loading, error } = useQuery(GET_CHAR_HEADER, {
     variables: {
       where: {
@@ -23,13 +22,22 @@ const CharPageHeader = ({ charID }) => {
   return (
     <div className="flex w-1/3 flex-col items-center overflow-clip border-r border-black">
       {loading ? (
-        <Loading />
+        <CharPageHeaderSkeleton />
       ) : error ? (
         <Error />
       ) : (
-        <div className="w-full">
+        <div className="flex w-full flex-col items-center">
           <div className="flex w-full flex-col items-center border-b border-black pt-4">
-            <img className="" src={data.characters[0].imageURL} />
+            <div
+              className={`h-[102px] w-[66px] animate-pulse rounded-md bg-gray-300 ${
+                imgLoading ? "inline" : "hidden"
+              }`}
+            />
+            <img
+              className={`${imgLoading ? "hidden" : "inline"}`}
+              src={data.characters[0].imageURL}
+              onLoad={() => setImgLoading(false)}
+            />
             <h1 className="p-2 text-center text-3xl font-bold">
               {data.characters[0].name}
             </h1>
@@ -88,6 +96,14 @@ const CharPageHeader = ({ charID }) => {
               )}
             </div>
           </div>
+          <ArchetypeChart
+            poke={data.characters[0].poke}
+            pressure={data.characters[0].pressure}
+            defense={data.characters[0].defense}
+            whiffPunish={data.characters[0].whiffPunish}
+            keepout={data.characters[0].keepout}
+            mixup={data.characters[0].mixup}
+          />
         </div>
       )}
     </div>

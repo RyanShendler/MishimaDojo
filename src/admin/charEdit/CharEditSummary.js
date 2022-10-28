@@ -15,7 +15,7 @@ const CharEditSummary = ({ charID }) => {
   });
 
   return (
-    <div className="col-span-2">
+    <div className="col-span-3">
       {loading ? (
         <Loading />
       ) : error ? (

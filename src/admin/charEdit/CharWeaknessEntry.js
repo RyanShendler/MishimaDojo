@@ -1,10 +1,11 @@
 import { useMutation } from "@apollo/client";
 import { EDIT_CHAR_WEAKNESSES } from "../../mutations/EDIT_CHAR_WEAKNESSES";
+import { GET_CHAR_HOME } from "../../queries/GET_CHAR_HOME";
 import { GET_CHAR_WEAKNESSES } from "../../queries/GET_CHAR_WEAKNESSES";
 
 const CharWeaknessEntry = ({ weakness, allWeaknesses, charID }) => {
   const [removeWeakness] = useMutation(EDIT_CHAR_WEAKNESSES, {
-    refetchQueries: [GET_CHAR_WEAKNESSES],
+    refetchQueries: [GET_CHAR_WEAKNESSES, GET_CHAR_HOME],
     ignoreResults: true,
   });
 

@@ -8,6 +8,12 @@ export const GET_CHAR_HEADER = gql`
     characters(where: $where) {
       name
       imageURL
+      poke
+      keepout
+      mixup
+      pressure
+      defense
+      whiffPunish
       tags(where: $tagsWhere2) {
         tag
         value

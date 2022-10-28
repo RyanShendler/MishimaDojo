@@ -1,7 +1,5 @@
 import { useQuery } from "@apollo/client";
 import { GET_COMBO_INPUTS } from "../queries/GET_COMBO_INPUTS";
-import { GET_COMBO_LAUNCHERS } from "../queries/GET_COMBO_LAUNCHERS";
-import { GET_COMBO_TAGS } from "../queries/GET_COMBO_TAGS";
 import Error from "../utility/Error";
 import Loading from "../utility/Loading";
 

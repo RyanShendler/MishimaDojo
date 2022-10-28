@@ -7,6 +7,7 @@ import { createPortal } from "react-dom";
 import Loading from "../../utility/Loading";
 import Error from "../../utility/Error";
 import { GET_STANCELESS } from "../../queries/GET_STANCELESS";
+import { GET_CHAR_STANCES } from "../../queries/GET_CHAR_STANCES";
 
 const StanceMovePopup = ({ charID, stanceID, destroyPopup }) => {
   const elRef = useRef(null);
@@ -31,7 +32,12 @@ const StanceMovePopup = ({ charID, stanceID, destroyPopup }) => {
     },
   });
   const [addMove] = useMutation(ADD_STANCE_MOVE, {
-    refetchQueries: [GET_NONSTANCE_MOVES, GET_STANCE_MOVES, GET_STANCELESS],
+    refetchQueries: [
+      GET_NONSTANCE_MOVES,
+      GET_STANCE_MOVES,
+      GET_STANCELESS,
+      GET_CHAR_STANCES,
+    ],
     ignoreResults: true,
   });
   const [moveID, setMoveID] = useState("");

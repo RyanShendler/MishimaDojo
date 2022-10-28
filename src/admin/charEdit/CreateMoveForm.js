@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { CREATE_MOVE } from "../../mutations/CREATE_MOVE";
+import { GET_CHAR_STANCES } from "../../queries/GET_CHAR_STANCES";
 import { GET_FULL_MOVELIST } from "../../queries/GET_FULL_MOVELIST";
 import { GET_MOVELIST } from "../../queries/GET_MOVELIST";
 import { GET_NEW_LAUNCHERS } from "../../queries/GET_NEW_LAUNCHERS";

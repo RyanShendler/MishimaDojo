@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { SET_MOVE_HEADER } from "../../mutations/SET_MOVE_HEADER";
+import { GET_CHAR_STANCES } from "../../queries/GET_CHAR_STANCES";
 import { GET_COMBO_LAUNCHERS } from "../../queries/GET_COMBO_LAUNCHERS";
 import { GET_FULL_MOVELIST } from "../../queries/GET_FULL_MOVELIST";
 import { GET_MOVELIST } from "../../queries/GET_MOVELIST";
@@ -24,6 +25,7 @@ const MoveHeaderText = ({ moveID, moveName, moveInput }) => {
       GET_NEW_LAUNCHERS,
       GET_PUNISHERS,
       GET_FULL_MOVELIST,
+      GET_CHAR_STANCES,
     ],
     ignoreResults: true,
   });

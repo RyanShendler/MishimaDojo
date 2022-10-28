@@ -1,13 +1,14 @@
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { SET_STANCE_SUMMARY } from "../../mutations/SET_STANCE_SUMMARY";
+import { GET_CHAR_STANCES } from "../../queries/GET_CHAR_STANCES";
 import { GET_STANCE_SUMMARY } from "../../queries/GET_STANCE_SUMMARY";
 
 const StanceSummaryText = ({ stanceID, stanceSummary }) => {
   const [editing, setEditing] = useState(false);
   const [summary, setSummary] = useState(stanceSummary);
   const [editSummary] = useMutation(SET_STANCE_SUMMARY, {
-    refetchQueries: [GET_STANCE_SUMMARY],
+    refetchQueries: [GET_STANCE_SUMMARY, GET_CHAR_STANCES],
     ignoreResults: true,
   });
 

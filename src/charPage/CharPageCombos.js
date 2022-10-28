@@ -64,7 +64,11 @@ const CharPageCombos = () => {
       <div className="mb-2 flex flex-col">
         <h3 className="text-xl font-bold">Combos</h3>
         {fullLoading ? (
-          <Loading />
+          <div className="flex animate-pulse flex-col space-y-1">
+            <div className="h-5 w-2/5 rounded-md bg-gray-300" />
+            <div className="ml-2 h-5 w-1/5 rounded-md bg-gray-300" />
+            <div className="ml-2 h-5 w-1/5 rounded-md bg-gray-300" />
+          </div>
         ) : fullError ? (
           <Error />
         ) : !fullData.characters.length ? (
@@ -90,7 +94,11 @@ const CharPageCombos = () => {
       <div className="mb-2 flex flex-col">
         <h3 className="text-xl font-bold">Mini-Combos</h3>
         {miniLoading ? (
-          <Loading />
+          <div className="flex animate-pulse flex-col space-y-1">
+            <div className="h-5 w-2/5 rounded-md bg-gray-300" />
+            <div className="ml-2 h-5 w-1/5 rounded-md bg-gray-300" />
+            <div className="ml-2 h-5 w-1/5 rounded-md bg-gray-300" />
+          </div>
         ) : miniError ? (
           <Error />
         ) : !miniData.characters.length ? (
@@ -116,7 +124,11 @@ const CharPageCombos = () => {
       <div className="flex flex-col">
         <h3 className="text-xl font-bold">Wall Combos</h3>
         {wallLoading ? (
-          <Loading />
+          <div className="flex animate-pulse flex-col space-y-1">
+            <div className="h-5 w-2/5 rounded-md bg-gray-300" />
+            <div className="ml-2 h-5 w-1/5 rounded-md bg-gray-300" />
+            <div className="ml-2 h-5 w-1/5 rounded-md bg-gray-300" />
+          </div>
         ) : wallError ? (
           <Error />
         ) : !wallData.characters.length ? (

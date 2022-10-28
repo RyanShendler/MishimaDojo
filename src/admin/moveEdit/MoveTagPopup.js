@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { ADD_MOVE_TAG } from "../../mutations/ADD_MOVE_TAG";
+import { GET_CHAR_STANCES } from "../../queries/GET_CHAR_STANCES";
 import { GET_FULL_MOVELIST } from "../../queries/GET_FULL_MOVELIST";
 import { GET_MOVELIST } from "../../queries/GET_MOVELIST";
 import { GET_MOVE_TAGS } from "../../queries/GET_MOVE_TAGS";
@@ -35,6 +36,7 @@ const MoveTagPopup = ({ moveID, destroyPopup }) => {
       GET_NEW_MOVE_TAGS,
       GET_PUNISHERS,
       GET_FULL_MOVELIST,
+      GET_CHAR_STANCES,
     ],
     ignoreResults: true,
   });

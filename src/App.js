@@ -18,6 +18,7 @@ import CharPageStances from "./charPage/CharPageStances";
 import CharPageCombos from "./charPage/CharPageCombos";
 import CharPagePunishers from "./charPage/CharPagePunishers";
 import TierList from "./tierList/TierList";
+import CharResultsSkeleton from "./search/CharResultsSkeleton";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/",

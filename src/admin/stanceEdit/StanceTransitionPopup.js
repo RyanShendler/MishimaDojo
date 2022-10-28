@@ -3,6 +3,7 @@ import { useRef, useEffect, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { SET_STANCE_TRANSITIONS } from "../../mutations/SET_STANCE_TRANSITIONS";
 import { GET_STANCE_TRANSITIONS } from "../../queries/GET_STANCE_TRANSITIONS";
+import { GET_CHAR_STANCES } from "../../queries/GET_CHAR_STANCES";
 
 const StanceTransitionPopup = ({ stanceID, destroyPopup, allTransitions }) => {
   const elRef = useRef(null);
@@ -16,7 +17,7 @@ const StanceTransitionPopup = ({ stanceID, destroyPopup, allTransitions }) => {
   }, []);
   const [transition, setTransition] = useState("");
   const [addTransition] = useMutation(SET_STANCE_TRANSITIONS, {
-    refetchQueries: [GET_STANCE_TRANSITIONS],
+    refetchQueries: [GET_STANCE_TRANSITIONS, GET_CHAR_STANCES],
     ignoreResults: true,
   });
 

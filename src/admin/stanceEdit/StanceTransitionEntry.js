@@ -1,10 +1,11 @@
 import { useMutation } from "@apollo/client";
 import { SET_STANCE_TRANSITIONS } from "../../mutations/SET_STANCE_TRANSITIONS";
+import { GET_CHAR_STANCES } from "../../queries/GET_CHAR_STANCES";
 import { GET_STANCE_TRANSITIONS } from "../../queries/GET_STANCE_TRANSITIONS";
 
 const StanceTransitionEntry = ({ stanceID, transition, allTransitions }) => {
   const [deleteTransition] = useMutation(SET_STANCE_TRANSITIONS, {
-    refetchQueries: [GET_STANCE_TRANSITIONS],
+    refetchQueries: [GET_STANCE_TRANSITIONS, GET_CHAR_STANCES],
     ignoreResults: true,
   });
 

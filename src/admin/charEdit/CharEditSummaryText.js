@@ -1,13 +1,14 @@
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { EDIT_CHAR_SUMMARY } from "../../mutations/EDIT_CHAR_SUMMARY";
+import { GET_CHAR_HOME } from "../../queries/GET_CHAR_HOME";
 import { GET_CHAR_SUMMARY } from "../../queries/GET_CHAR_SUMMARY";
 
 const CharEditSummaryText = ({ charID, charSummary }) => {
   const [editing, setEditing] = useState(false);
   const [summary, setSummary] = useState(charSummary);
   const [editSummary] = useMutation(EDIT_CHAR_SUMMARY, {
-    refetchQueries: [GET_CHAR_SUMMARY],
+    refetchQueries: [GET_CHAR_SUMMARY, GET_CHAR_HOME],
     ignoreResults: true,
   });
 

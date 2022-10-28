@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { GET_CHAR_LIST } from "./queries/GET_CHAR_LIST";
 import RosterEntry from "./RosterEntry";
+import RosterSkeleton from "./RosterSkeleton";
 import Error from "./utility/Error";
 import Loading from "./utility/Loading";
 
@@ -24,7 +25,7 @@ const Roster = () => {
           <h1 className="text-4xl text-[#F1F5F9]">Roster</h1>
         </div>
         {loading ? (
-          <Loading />
+          <RosterSkeleton />
         ) : error ? (
           <Error />
         ) : !data.characters.length ? (

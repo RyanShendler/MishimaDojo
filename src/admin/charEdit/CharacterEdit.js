@@ -6,6 +6,7 @@ import CharEditProCon from "./CharEditProCon";
 import CharEditMoves from "./CharEditMoves";
 import CharEditStances from "./CharEditStances";
 import CharEditCombos from "./CharEditCombos";
+import CharEditRatings from "./CharEditRatings";
 
 //home page for editing a character
 const CharacterEdit = () => {
@@ -18,9 +19,10 @@ const CharacterEdit = () => {
       >
         Back to Home Page
       </Link>
-      <div className="grid w-[66%] grid-cols-2 rounded-md border border-black bg-content shadow-md">
+      <div className="grid w-[66%] grid-cols-3 rounded-md border border-black bg-content shadow-md">
         <CharEditHeader charID={charID} />
         <CharEditDetails charID={charID} />
+        <CharEditRatings charID={charID} />
         <CharEditSummary charID={charID} />
         <CharEditProCon charID={charID} />
       </div>

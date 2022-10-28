@@ -5,6 +5,7 @@ import { GET_MOVELIST } from "../queries/GET_MOVELIST";
 import Error from "../utility/Error";
 import Loading from "../utility/Loading";
 import CharPageMoveRow from "./CharPageMoveRow";
+import CharPageMoveSkeleton from "./CharPageMoveSkeleton";
 
 const CharPageMovelist = () => {
   const { charID } = useParams();
@@ -26,7 +27,7 @@ const CharPageMovelist = () => {
   return (
     <div className="overflow-auto p-2">
       {loading ? (
-        <Loading />
+        <CharPageMoveSkeleton />
       ) : error ? (
         <Error />
       ) : !data.characters.length ? (

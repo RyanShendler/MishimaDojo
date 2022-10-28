@@ -7,6 +7,7 @@ import { GET_ALL_PLAYSTYLES } from "../queries/GET_ALL_PLAYSTYLES";
 import Loading from "../utility/Loading";
 import Error from "../utility/Error";
 import CharSearchResults from "./CharSearchResults";
+import CharResultsSkeleton from "./CharResultsSkeleton";
 
 const CharSearchParams = () => {
   const [name, setName] = useState("");
@@ -114,7 +115,7 @@ const CharSearchParams = () => {
           />
         </label>
         {tierLoading ? (
-          <Loading />
+          <div className="h-7 w-3/5 animate-pulse self-center rounded-md bg-gray-300" />
         ) : tierError ? (
           <Error />
         ) : (
@@ -139,7 +140,7 @@ const CharSearchParams = () => {
           </label>
         )}
         {diffLoading ? (
-          <Loading />
+          <div className="h-7 w-3/5 animate-pulse self-center rounded-md bg-gray-300" />
         ) : diffError ? (
           <Error />
         ) : (
@@ -164,7 +165,7 @@ const CharSearchParams = () => {
           </label>
         )}
         {playLoading ? (
-          <Loading />
+          <div className="h-7 w-3/5 animate-pulse self-center rounded-md bg-gray-300" />
         ) : playError ? (
           <Error />
         ) : (
@@ -197,7 +198,7 @@ const CharSearchParams = () => {
       {!charCalled ? (
         <div></div>
       ) : charLoading ? (
-        <Loading />
+        <CharResultsSkeleton />
       ) : charError ? (
         <Error />
       ) : (

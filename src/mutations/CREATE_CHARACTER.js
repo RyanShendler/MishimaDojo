@@ -13,12 +13,20 @@ export const CREATE_CHARACTER = gql`
 
 /* 
 {
-  "input": [{
-    "name": "",
-    "imageURL": "",
-    "summary": "",
-    "strengths": [],
-    "weaknesses": []
-  }]
+  "input": [
+    {
+      "name": "",
+      "imageURL": "",
+      "summary": "",
+      "poke": 1,
+      "keepout": 1,
+      "mixup": 1,
+      "pressure": 1,
+      "defense": 1,
+      "whiffPunish": 1,
+      "strengths": [],
+      "weaknesses": []
+    }
+  ]
 }
 */

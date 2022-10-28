@@ -1,10 +1,11 @@
 import { useMutation } from "@apollo/client";
 import { EDIT_CHAR_STRENGTHS } from "../../mutations/EDIT_CHAR_STRENGTHS";
+import { GET_CHAR_HOME } from "../../queries/GET_CHAR_HOME";
 import { GET_CHAR_STRENGTHS } from "../../queries/GET_CHAR_STRENGTHS";
 
 const CharStrengthEntry = ({ strength, allStrengths, charID }) => {
   const [removeStrength] = useMutation(EDIT_CHAR_STRENGTHS, {
-    refetchQueries: [GET_CHAR_STRENGTHS],
+    refetchQueries: [GET_CHAR_STRENGTHS, GET_CHAR_HOME],
     ignoreResults: true,
   });
 

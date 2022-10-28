@@ -2,6 +2,7 @@ import { useMutation } from "@apollo/client";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { EDIT_CHAR_WEAKNESSES } from "../../mutations/EDIT_CHAR_WEAKNESSES";
+import { GET_CHAR_HOME } from "../../queries/GET_CHAR_HOME";
 import { GET_CHAR_WEAKNESSES } from "../../queries/GET_CHAR_WEAKNESSES";
 
 const CreateWeaknessPopup = ({ charID, allWeaknesses, destroyPopup }) => {
@@ -15,7 +16,7 @@ const CreateWeaknessPopup = ({ charID, allWeaknesses, destroyPopup }) => {
     return () => popupRoot.removeChild(elRef.current);
   }, []);
   const [addWeakness] = useMutation(EDIT_CHAR_WEAKNESSES, {
-    refetchQueries: [GET_CHAR_WEAKNESSES],
+    refetchQueries: [GET_CHAR_WEAKNESSES, GET_CHAR_HOME],
     ignoreResults: true,
   });
   const [weakness, setWeakness] = useState("");

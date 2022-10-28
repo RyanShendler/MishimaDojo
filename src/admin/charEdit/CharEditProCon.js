@@ -3,7 +3,7 @@ import CharEditWeaknesses from "./CharEditWeaknesses";
 
 const CharEditProCon = ({ charID }) => {
   return (
-    <div className="col-span-2 grid grid-cols-2 grid-rows-[auto_minmax(0,1fr)] px-2 pb-2">
+    <div className="col-span-3 grid grid-cols-2 grid-rows-[auto_minmax(0,1fr)] px-2 pb-2">
       <div className="flex items-center justify-center border border-black">
         <h3 className="font-bold">Strengths</h3>
       </div>

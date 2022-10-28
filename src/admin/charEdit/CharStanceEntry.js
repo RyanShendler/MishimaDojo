@@ -1,11 +1,12 @@
 import { useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { DELETE_STANCE } from "../../mutations/DELETE_STANCE";
+import { GET_CHAR_STANCES } from "../../queries/GET_CHAR_STANCES";
 import { GET_STANCELIST } from "../../queries/GET_STANCELIST";
 
 const CharStanceEntry = ({ charID, stanceID, stanceName, stanceNotation }) => {
   const [deleteStance] = useMutation(DELETE_STANCE, {
-    refetchQueries: [GET_STANCELIST],
+    refetchQueries: [GET_STANCELIST, GET_CHAR_STANCES],
     ignoreResults: true,
   });
 

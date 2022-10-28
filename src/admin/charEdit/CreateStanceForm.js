@@ -1,13 +1,14 @@
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { CREATE_STANCE } from "../../mutations/CREATE_STANCE";
+import { GET_CHAR_STANCES } from "../../queries/GET_CHAR_STANCES";
 import { GET_STANCELIST } from "../../queries/GET_STANCELIST";
 
 const CreateStanceForm = ({ charID, destroyForm }) => {
   const [name, setName] = useState("");
   const [notation, setNotation] = useState("");
   const [createStance] = useMutation(CREATE_STANCE, {
-    refetchQueries: [GET_STANCELIST],
+    refetchQueries: [GET_STANCELIST, GET_CHAR_STANCES],
     ignoreResults: true,
   });
 

@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { SET_STANCE_HEADER } from "../../mutations/SET_STANCE_HEADER";
+import { GET_CHAR_STANCES } from "../../queries/GET_CHAR_STANCES";
 import { GET_STANCELIST } from "../../queries/GET_STANCELIST";
 import { GET_STANCE_HEADER } from "../../queries/GET_STANCE_HEADER";
 
@@ -9,7 +10,7 @@ const StanceHeaderText = ({ stanceID, stanceName, stanceNotation }) => {
   const [name, setName] = useState(stanceName);
   const [notation, setNotation] = useState(stanceNotation);
   const [setHeader] = useMutation(SET_STANCE_HEADER, {
-    refetchQueries: [GET_STANCE_HEADER, GET_STANCELIST],
+    refetchQueries: [GET_STANCE_HEADER, GET_STANCELIST, GET_CHAR_STANCES],
     ignoreResults: true,
   });
 

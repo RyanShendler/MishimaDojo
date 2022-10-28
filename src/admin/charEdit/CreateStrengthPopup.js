@@ -2,6 +2,7 @@ import { useMutation } from "@apollo/client";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { EDIT_CHAR_STRENGTHS } from "../../mutations/EDIT_CHAR_STRENGTHS";
+import { GET_CHAR_HOME } from "../../queries/GET_CHAR_HOME";
 import { GET_CHAR_STRENGTHS } from "../../queries/GET_CHAR_STRENGTHS";
 
 const CreateStrengthPopup = ({ charID, allStrengths, destroyPopup }) => {
@@ -15,7 +16,7 @@ const CreateStrengthPopup = ({ charID, allStrengths, destroyPopup }) => {
     return () => popupRoot.removeChild(elRef.current);
   }, []);
   const [addStrength] = useMutation(EDIT_CHAR_STRENGTHS, {
-    refetchQueries: [GET_CHAR_STRENGTHS],
+    refetchQueries: [GET_CHAR_STRENGTHS, GET_CHAR_HOME],
     ignoreResults: true,
   });
   const [strength, setStrength] = useState("");

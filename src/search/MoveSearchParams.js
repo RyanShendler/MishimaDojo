@@ -6,6 +6,7 @@ import Loading from "../utility/Loading";
 import Error from "../utility/Error";
 import { GET_CHAR_LIST } from "../queries/GET_CHAR_LIST";
 import MoveSearchResults from "./MoveSearchResults";
+import MoveResultsSkeleton from "./MoveResultsSkeleton";
 
 const MoveSearchParams = () => {
   const [name, setName] = useState("");
@@ -127,7 +128,7 @@ const MoveSearchParams = () => {
           />
         </label>
         {tagLoading ? (
-          <Loading />
+          <div className="h-7 w-3/5 animate-pulse self-center rounded-md bg-gray-300" />
         ) : tagError ? (
           <Error />
         ) : (
@@ -150,7 +151,7 @@ const MoveSearchParams = () => {
           </label>
         )}
         {charLoading ? (
-          <Loading />
+          <div className="h-7 w-3/5 animate-pulse self-center rounded-md bg-gray-300" />
         ) : charError ? (
           <Error />
         ) : (
@@ -181,7 +182,7 @@ const MoveSearchParams = () => {
       {!moveCalled ? (
         <div></div>
       ) : moveLoading ? (
-        <Loading />
+        <MoveResultsSkeleton />
       ) : moveError ? (
         <Error />
       ) : (

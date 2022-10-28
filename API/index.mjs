@@ -9,6 +9,12 @@ const typeDefs = gql`
     name: String!
     imageURL: String!
     summary: String!
+    poke: Int!
+    keepout: Int!
+    mixup: Int!
+    pressure: Int!
+    defense: Int!
+    whiffPunish: Int!
     strengths: [String!]!
     weaknesses: [String!]!
     moves: [Move!]! @relationship(type: "HAS_MOVE", direction: OUT)

@@ -3,6 +3,7 @@ import { GET_ALL_TIERS } from "../queries/GET_ALL_TIERS";
 import Error from "../utility/Error";
 import Loading from "../utility/Loading";
 import TierListRow from "./TierListRow";
+import TierListSkeleton from "./TierListSkeleton";
 
 const TierList = () => {
   const { data, loading, error } = useQuery(GET_ALL_TIERS, {
@@ -20,7 +21,7 @@ const TierList = () => {
           <h1 className="text-4xl text-[#F1F5F9]">Tier List</h1>
         </div>
         {loading ? (
-          <Loading />
+          <TierListSkeleton />
         ) : error ? (
           <Error />
         ) : !data.characterTags.length ? (

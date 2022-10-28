@@ -71,7 +71,12 @@ const CharPagePunishers = () => {
       </div>
       <div className="flex justify-center">
         {standLoading ? (
-          <Loading />
+          <div className="flex animate-pulse flex-col space-y-1">
+            <div className="h-6 w-[160px] rounded-md bg-gray-300" />
+            <div className="h-6 w-[160px] rounded-md bg-gray-300" />
+            <div className="h-6 w-[160px] rounded-md bg-gray-300" />
+            <div className="h-6 w-[160px] rounded-md bg-gray-300" />
+          </div>
         ) : standError ? (
           <Error />
         ) : !standData.characters.length ? (
@@ -95,7 +100,12 @@ const CharPagePunishers = () => {
       </div>
       <div className="flex justify-center">
         {crouchLoading ? (
-          <Loading />
+          <div className="flex animate-pulse flex-col space-y-1">
+            <div className="h-6 w-[160px] rounded-md bg-gray-300" />
+            <div className="h-6 w-[160px] rounded-md bg-gray-300" />
+            <div className="h-6 w-[160px] rounded-md bg-gray-300" />
+            <div className="h-6 w-[160px] rounded-md bg-gray-300" />
+          </div>
         ) : crouchError ? (
           <Error />
         ) : !crouchData.characters.length ? (
@@ -119,7 +129,12 @@ const CharPagePunishers = () => {
       </div>
       <div className="flex justify-center">
         {whiffLoading ? (
-          <Loading />
+          <div className="flex animate-pulse flex-col space-y-1">
+            <div className="h-6 w-[160px] rounded-md bg-gray-300" />
+            <div className="h-6 w-[160px] rounded-md bg-gray-300" />
+            <div className="h-6 w-[160px] rounded-md bg-gray-300" />
+            <div className="h-6 w-[160px] rounded-md bg-gray-300" />
+          </div>
         ) : whiffError ? (
           <Error />
         ) : !whiffData.characters.length ? (
