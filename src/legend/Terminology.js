@@ -4,6 +4,7 @@ import TerminologyEntry from "./TerminologyEntry";
 import Loading from "../utility/Loading";
 import Error from "../utility/Error";
 import { useState } from "react";
+import TerminologySkeleton from "./TerminologySkeleton";
 
 const Terminology = () => {
   const [offset, setOffset] = useState(0);
@@ -25,7 +26,7 @@ const Terminology = () => {
     <div className="flex w-2/3 flex-col space-y-2">
       <h2 className="ml-2 text-2xl font-bold">Terminology</h2>
       {loading ? (
-        <Loading />
+        <TerminologySkeleton />
       ) : error ? (
         <Error />
       ) : !data.terms.length ? (

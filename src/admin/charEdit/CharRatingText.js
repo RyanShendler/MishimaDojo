@@ -1,8 +1,10 @@
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { SET_RATINGS } from "../../mutations/SET_RATINGS";
+import { UPDATE_SIMILARITIES } from "../../mutations/UPDATE_SIMILARITIES";
 import { GET_CHAR_HEADER } from "../../queries/GET_CHAR_HEADER";
 import { GET_RATINGS } from "../../queries/GET_RATINGS";
+import { GET_SIMILAR_CHARS } from "../../queries/GET_SIMILAR_CHARS";
 
 const CharRatingText = ({
   charKeepout,
@@ -13,9 +15,16 @@ const CharRatingText = ({
   charPressure,
   charID,
 }) => {
+  const [updateSimilarities] = useMutation(UPDATE_SIMILARITIES, {
+    refetchQueries: [GET_SIMILAR_CHARS],
+    ignoreResults: true,
+  });
   const [setRatings] = useMutation(SET_RATINGS, {
     refetchQueries: [GET_RATINGS, GET_CHAR_HEADER],
     ignoreResults: true,
+    onCompleted() {
+      updateSimilarities();
+    },
   });
   const [editing, setEditing] = useState(false);
   const [keepout, setKeepout] = useState(charKeepout);

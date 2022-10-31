@@ -11,6 +11,7 @@ import CharEditRatings from "./CharEditRatings";
 //home page for editing a character
 const CharacterEdit = () => {
   const { charID } = useParams();
+
   return (
     <div className="flex flex-col items-center space-y-4 p-4">
       <Link

@@ -2,6 +2,7 @@ import { useState } from "react";
 
 const InputArrowEntry = ({ direction, notation }) => {
   const [showPopup, setShowPopup] = useState(false);
+  const [imgLoading, setImgLoading] = useState(true);
 
   return (
     <div
@@ -14,11 +15,17 @@ const InputArrowEntry = ({ direction, notation }) => {
           {`${direction} (${notation})`}
         </h5>
       )}
+      <div
+        className={`h-full w-full animate-pulse rounded-md bg-gray-300 ${
+          imgLoading ? "inline" : "hidden"
+        }`}
+      />
       <img
-        className=""
+        className={`${imgLoading ? "hidden" : "inline"}`}
         src={`assets/inputs/${direction.toLowerCase()}.svg`}
         width="100%"
         height="100%"
+        onLoad={() => setImgLoading(false)}
       />
     </div>
   );

@@ -22,6 +22,14 @@ const typeDefs = gql`
     combos: [Combo!]! @relationship(type: "HAS_COMBO", direction: OUT)
     tags: [CharacterTag!]!
       @relationship(type: "HAS_CHARACTER_TAG", direction: IN)
+    similar: [Character!]!
+      @relationship(type: "SIMILAR", properties: "Similarity", direction: OUT)
+    similarTo: [Character!]!
+      @relationship(type: "SIMILAR", properties: "Similarity", direction: IN)
+  }
+
+  interface Similarity @relationshipProperties {
+    similarity: Float!
   }
 
   type Move {
@@ -204,6 +212,24 @@ const typeDefs = gql`
         RETURN null
         """
       )
+
+    updateSimilarities: String!
+      @cypher(
+        statement: """
+        CALL gds.graph.project('charGraph', {Character: {properties: ['poke', 'keepout', 'mixup', 'defense', 'pressure', 'whiffPunish']}}, '*')
+        YIELD graphName
+        WITH count(*) as dummy
+        OPTIONAL MATCH ()-[s:SIMILAR]->()
+        DELETE s
+        WITH count(*) as dummy
+        CALL gds.knn.write('charGraph', {topK: 5, nodeProperties: ['poke', 'keepout', 'mixup', 'pressure', 'defense', 'whiffPunish'], writeRelationshipType: 'SIMILAR', writeProperty: 'similarity', concurrency: 1, randomSeed: 1738, sampleRate: 1.0, deltaThreshold: 0.0})
+        YIELD relationshipsWritten
+        WITH count(*) as dummy
+        CALL gds.graph.drop('charGraph')
+        YIELD graphName
+        RETURN graphName
+        """
+      )
   }
 
   type Query {
@@ -233,6 +259,15 @@ const typeDefs = gql`
         MATCH (n)
         WHERE n:MoveTag OR n:ComboTag OR n:CharacterTag
         RETURN count(n)
+        """
+      )
+
+    getGraphStatus: Boolean!
+      @cypher(
+        statement: """
+        CALL gds.graph.exists('charGraph')
+        YIELD exists
+        RETURN exists
         """
       )
   }

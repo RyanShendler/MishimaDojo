@@ -26,7 +26,15 @@ const CharPageStances = () => {
   return (
     <div className="flex h-full w-full flex-col space-y-4 overflow-y-auto p-2">
       {loading ? (
-        <Loading />
+        <div className="flex animate-pulse flex-col space-y-1">
+          <div className="h-6 w-[20%] rounded-md bg-gray-300" />
+          <div className="ml-2 h-10 w-full rounded-md bg-gray-300" />
+          <div className="ml-2 h-6 w-[30%] rounded-md bg-gray-300" />
+          <div className="ml-2 h-6 w-full rounded-md bg-gray-300" />
+          <div className="ml-2 h-6 w-full rounded-md bg-gray-300" />
+          <div className="ml-2 h-6 w-full rounded-md bg-gray-300" />
+          <div className="ml-2 h-6 w-full rounded-md bg-gray-300" />
+        </div>
       ) : error ? (
         <Error />
       ) : !data.characters.length ? (
