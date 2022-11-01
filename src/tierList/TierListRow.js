@@ -28,13 +28,18 @@ const TierListRow = ({ tier }) => {
           {tier}
         </h2>
       </div>
-      <div className="flex items-center space-x-2 p-2">
+      <div className="grid grid-cols-12 gap-2 p-2">
         {loading ? (
-          <div className="flex animate-pulse flex-row items-center rounded-md bg-gray-200">
-            <div className="ml-2 h-[114px] w-[62px] rounded-md bg-gray-300" />
-            <div className="ml-2 h-[114px] w-[62px] rounded-md bg-gray-300" />
-            <div className="ml-2 h-[114px] w-[62px] rounded-md bg-gray-300" />
-          </div>
+          Array(8)
+            .fill(true)
+            .map((_, i) => {
+              return (
+                <div
+                  key={i}
+                  className="h-[102px] w-[66px] rounded-md bg-gray-300"
+                />
+              );
+            })
         ) : error ? (
           <Error />
         ) : !data.characterTags.length ? (

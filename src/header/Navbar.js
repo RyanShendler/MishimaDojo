@@ -21,6 +21,10 @@ const Navbar = ({ destroyNavbar }) => {
         <NavbarEntry path={"/"} name={"Roster"} />
         <NavbarEntry path={"/legend"} name={"Legend"} />
         <NavbarEntry path={"/tier"} name={"Tier List"} />
+        <NavbarEntry
+          path={"/recommendation"}
+          name={"Character Recommendation"}
+        />
       </ul>
     </nav>
   );

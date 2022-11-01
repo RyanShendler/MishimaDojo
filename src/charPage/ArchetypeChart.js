@@ -9,7 +9,7 @@ const ArchetypeChart = ({
   whiffPunish,
 }) => {
   return (
-    <div className="relative flex w-full flex-col items-center">
+    <div className="relative flex w-[88%] flex-col items-center">
       <h3 className="absolute top-1 w-full text-center text-xl font-bold">
         Archetype
       </h3>

@@ -15,7 +15,7 @@ const CharacterEdit = () => {
   return (
     <div className="flex flex-col items-center space-y-4 p-4">
       <Link
-        className="self-end rounded-md border border-black bg-[#EDF0F5] p-2 shadow-sm"
+        className="self-end rounded-md border border-black bg-[#EDF0F5] p-2 shadow-sm hover:bg-[#F7F8FA]"
         to="/admin/home"
       >
         Back to Home Page

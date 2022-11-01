@@ -1,15 +1,6 @@
-import { useMutation } from "@apollo/client";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { DELETE_MOVE } from "../../mutations/DELETE_MOVE";
-import { GET_CHAR_STANCES } from "../../queries/GET_CHAR_STANCES";
-import { GET_COMBO_LAUNCHERS } from "../../queries/GET_COMBO_LAUNCHERS";
-import { GET_FULL_MOVELIST } from "../../queries/GET_FULL_MOVELIST";
-import { GET_MOVELIST } from "../../queries/GET_MOVELIST";
-import { GET_NEW_LAUNCHERS } from "../../queries/GET_NEW_LAUNCHERS";
-import { GET_NONSTANCE_MOVES } from "../../queries/GET_NONSTANCE_MOVES";
-import { GET_PUNISHERS } from "../../queries/GET_PUNISHERS";
-import { GET_STANCELESS } from "../../queries/GET_STANCELESS";
-import { GET_STANCE_MOVES } from "../../queries/GET_STANCE_MOVES";
+import DeleteMovePopup from "./DeleteMovePopup";
 
 const CharMoveRow = ({
   charID,
@@ -17,22 +8,17 @@ const CharMoveRow = ({
   moveName = "",
   moveInput = "",
 }) => {
-  const [deleteMove] = useMutation(DELETE_MOVE, {
-    refetchQueries: [
-      GET_MOVELIST,
-      GET_NONSTANCE_MOVES,
-      GET_STANCE_MOVES,
-      GET_COMBO_LAUNCHERS,
-      GET_NEW_LAUNCHERS,
-      GET_PUNISHERS,
-      GET_FULL_MOVELIST,
-      GET_CHAR_STANCES,
-    ],
-    ignoreResults: true,
-  });
+  const [showPopup, setShowPopup] = useState(false);
 
   return (
     <tr className="">
+      {showPopup && (
+        <DeleteMovePopup
+          moveID={moveID}
+          destroyPopup={() => setShowPopup(false)}
+          moveName={moveName}
+        />
+      )}
       <td className="border border-black">
         <div className="min-h-[1.5rem]">{moveName}</div>
       </td>
@@ -45,7 +31,7 @@ const CharMoveRow = ({
         ) : (
           <div className="min-h-[1.5rem]">
             <Link
-              className="text-center text-[#0000EE] underline"
+              className="text-center text-[#0000EE] hover:underline"
               to={`/admin/characters/${charID}/moves/${moveID}`}
             >
               edit
@@ -59,16 +45,8 @@ const CharMoveRow = ({
         ) : (
           <div className="min-h-[1.5rem]">
             <button
-              className="text-center text-red-600"
-              onClick={() =>
-                deleteMove({
-                  variables: {
-                    where: {
-                      id: moveID,
-                    },
-                  },
-                })
-              }
+              className="text-center text-red-600 hover:underline"
+              onClick={() => setShowPopup(true)}
             >
               Delete
             </button>

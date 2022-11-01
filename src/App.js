@@ -19,6 +19,7 @@ import CharPageCombos from "./charPage/CharPageCombos";
 import CharPagePunishers from "./charPage/CharPagePunishers";
 import TierList from "./tierList/TierList";
 import CharResultsSkeleton from "./search/CharResultsSkeleton";
+import CharacterRecommendation from "./charSuggest/CharacterRecommendation";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/",
@@ -41,6 +42,10 @@ const App = () => {
               <Route path="/legend" element={<Legend />} />
               <Route path="/search" element={<Search />} />
               <Route path="/tier" element={<TierList />} />
+              <Route
+                path="/recommendation"
+                element={<CharacterRecommendation />}
+              />
               <Route path="/characters/:charID" element={<CharacterPage />}>
                 <Route path="home" element={<CharPageHome />} />
                 <Route path="moves" element={<CharPageMovelist />} />

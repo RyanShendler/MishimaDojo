@@ -1,10 +1,12 @@
 import { useQuery } from "@apollo/client";
 import { useState } from "react";
 import { GET_CHAR_HEADER } from "../queries/GET_CHAR_HEADER";
+import { GET_SIMILAR_CHARS } from "../queries/GET_SIMILAR_CHARS";
 import Error from "../utility/Error";
 import Loading from "../utility/Loading";
 import ArchetypeChart from "./ArchetypeChart";
 import CharPageHeaderSkeleton from "./CharPageHeaderSkeleton";
+import SimilarChars from "./SimilarChars";
 
 const CharPageHeader = ({ charID }) => {
   const [imgLoading, setImgLoading] = useState(true);
@@ -18,12 +20,30 @@ const CharPageHeader = ({ charID }) => {
       },
     },
   });
+  const {
+    data: simData,
+    loading: simLoading,
+    error: simError,
+  } = useQuery(GET_SIMILAR_CHARS, {
+    variables: {
+      where: {
+        id: charID,
+      },
+      sort: [
+        {
+          edge: {
+            similarity: "DESC",
+          },
+        },
+      ],
+    },
+  });
 
   return (
     <div className="flex w-1/3 flex-col items-center overflow-clip border-r border-black">
-      {loading ? (
+      {loading || simLoading ? (
         <CharPageHeaderSkeleton />
-      ) : error ? (
+      ) : error || simError ? (
         <Error />
       ) : (
         <div className="flex w-full flex-col items-center">
@@ -103,6 +123,9 @@ const CharPageHeader = ({ charID }) => {
             whiffPunish={data.characters[0].whiffPunish}
             keepout={data.characters[0].keepout}
             mixup={data.characters[0].mixup}
+          />
+          <SimilarChars
+            similarChars={simData.characters[0].similarConnection.edges}
           />
         </div>
       )}

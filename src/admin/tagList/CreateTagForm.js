@@ -115,7 +115,7 @@ const CreateTagForm = ({ destroyForm }) => {
           </label>
         </div>
         <input
-          className="rounded-md bg-green-600 p-1 text-lg text-white hover:cursor-pointer disabled:bg-green-800"
+          className="rounded-md bg-green-600 p-1 text-lg text-white hover:cursor-pointer hover:bg-green-500 disabled:bg-green-800"
           type="submit"
           value="Submit"
           disabled={!type}

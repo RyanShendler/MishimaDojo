@@ -69,7 +69,7 @@ const CreateStanceForm = ({ charID, destroyForm }) => {
         <input
           type="submit"
           value="Submit"
-          className="rounded-md bg-green-600 p-1 text-lg text-white hover:cursor-pointer"
+          className="rounded-md bg-green-600 p-1 text-lg text-white hover:cursor-pointer hover:bg-green-500"
         />
       </form>
     </div>

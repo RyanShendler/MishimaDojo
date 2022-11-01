@@ -12,13 +12,13 @@ const MoveEdit = () => {
     <div className="flex flex-col items-center space-y-4 p-4">
       <div className="flex flex-row items-center justify-end space-x-4 self-end">
         <Link
-          className="rounded-md border border-black bg-[#EDF0F5] p-2 shadow-sm"
+          className="rounded-md border border-black bg-[#EDF0F5] p-2 shadow-sm hover:bg-[#F7F8FA]"
           to={`/admin/characters/${charID}`}
         >
           Back to Character Page
         </Link>
         <Link
-          className="rounded-md border border-black bg-[#EDF0F5] p-2 shadow-sm"
+          className="rounded-md border border-black bg-[#EDF0F5] p-2 shadow-sm hover:bg-[#F7F8FA]"
           to={"/admin/home"}
         >
           Back to Home Page

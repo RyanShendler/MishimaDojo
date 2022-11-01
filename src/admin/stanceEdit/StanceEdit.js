@@ -12,13 +12,13 @@ const StanceEdit = () => {
       <div className="flex flex-row items-center justify-end space-x-4 self-end">
         <Link
           to={`/admin/characters/${charID}`}
-          className="rounded-md border border-black bg-[#EDF0F5] p-2 shadow-sm"
+          className="rounded-md border border-black bg-[#EDF0F5] p-2 shadow-sm hover:bg-[#F7F8FA]"
         >
           Back to Character Page
         </Link>
         <Link
           to={"/admin/home"}
-          className="rounded-md border border-black bg-[#EDF0F5] p-2 shadow-sm"
+          className="rounded-md border border-black bg-[#EDF0F5] p-2 shadow-sm hover:bg-[#F7F8FA]"
         >
           Back to Home Page
         </Link>

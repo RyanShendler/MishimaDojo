@@ -174,7 +174,7 @@ const MoveSearchParams = () => {
           </label>
         )}
         <input
-          className="cursor-pointer rounded-md bg-green-600 p-1 text-lg text-white shadow-md"
+          className="cursor-pointer rounded-md bg-green-600 p-1 text-lg text-white shadow-md hover:bg-green-500"
           type="submit"
           value="Search"
         />

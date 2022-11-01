@@ -61,7 +61,7 @@ const CreateComboForm = ({ charID, destroyForm }) => {
           type="submit"
           value="Submit"
           disabled={!type}
-          className="rounded-md bg-green-600 p-1 text-lg text-white hover:cursor-pointer disabled:bg-green-800"
+          className="rounded-md bg-green-600 p-1 text-lg text-white hover:cursor-pointer hover:bg-green-500 disabled:bg-green-800"
         />
       </form>
     </div>

@@ -13,12 +13,12 @@ const CharacterPage = () => {
   return (
     <div className="flex flex-col items-center space-y-4 p-4">
       <Link
-        className="self-end rounded-md border border-black bg-[#EDF0F5] p-2 shadow-sm"
+        className="self-end rounded-md border border-black bg-[#EDF0F5] p-2 shadow-sm hover:bg-[#F7F8FA]"
         to="/"
       >
         Back to Roster
       </Link>
-      <div className="flex max-h-[80vh] w-[66%] flex-row rounded-md border border-black bg-content shadow-md">
+      <div className="flex max-h-[82vh] w-[66%] flex-row rounded-md border border-black bg-content shadow-md">
         <CharPageHeader charID={charID} />
         <div className="flex w-full flex-col">
           <nav className="flex w-full justify-evenly border-b border-black">

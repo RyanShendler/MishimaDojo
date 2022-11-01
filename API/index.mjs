@@ -128,6 +128,13 @@ const typeDefs = gql`
     description: String!
   }
 
+  type RecommendedCharacter {
+    id: ID!
+    name: String!
+    image: String!
+    similarity: Float!
+  }
+
   type Mutation {
     setCharTag(charID: ID!, tagID: ID!, tag: String!): CharacterTag
       @cypher(
@@ -268,6 +275,22 @@ const typeDefs = gql`
         CALL gds.graph.exists('charGraph')
         YIELD exists
         RETURN exists
+        """
+      )
+
+    getRecommendedChar: RecommendedCharacter!
+      @cypher(
+        statement: """
+        CALL gds.graph.project('charGraph', {Character: {properties: ['poke', 'keepout', 'mixup', 'defense', 'pressure', 'whiffPunish']}}, '*')
+        YIELD nodeCount
+        WITH count(*) as dummy
+        CALL gds.knn.stream('charGraph', {topK: 1, nodeProperties: ['poke', 'keepout', 'mixup', 'pressure', 'defense', 'whiffPunish'], perturbationRate: 0.5, concurrency: 1, sampleRate: 1.0, deltaThreshold: 0.0}) YIELD node1, node2, similarity
+        WITH gds.util.asNode(node1) as char1, gds.util.asNode(node2) as char2, similarity
+        WHERE char1.name='Test'
+        WITH char2, similarity, count(*) as dummy
+        CALL gds.graph.drop('charGraph') YIELD graphName
+        WITH {id: char2.id, name: char2.name, image: char2.imageURL, similarity: similarity} as ReturnedChar
+        RETURN ReturnedChar
         """
       )
   }

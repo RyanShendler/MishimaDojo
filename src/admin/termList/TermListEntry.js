@@ -3,19 +3,17 @@ import { useState } from "react";
 import { DELETE_TERM } from "../../mutations/DELETE_TERM";
 import { EDIT_TERM } from "../../mutations/EDIT_TERM";
 import { GET_TERM_LIST } from "../../queries/GET_TERM_LIST";
+import DeleteTermPopup from "./DeleteTermPopup";
 
 const TermListEntry = ({ termID, termName, termDescription }) => {
   const [editTerm] = useMutation(EDIT_TERM, {
     refetchQueries: [GET_TERM_LIST],
     ignoreResults: true,
   });
-  const [deleteTerm] = useMutation(DELETE_TERM, {
-    refetchQueries: [GET_TERM_LIST],
-    ignoreResults: true,
-  });
   const [editing, setEditing] = useState(false);
   const [name, setName] = useState(termName);
   const [description, setDescription] = useState(termDescription);
+  const [showPopup, setShowPopup] = useState(false);
 
   return (
     <div className="flex flex-row shadow-md">
@@ -41,11 +39,18 @@ const TermListEntry = ({ termID, termName, termDescription }) => {
           </pre>
         </div>
       )}
+      {showPopup && (
+        <DeleteTermPopup
+          destroyPopup={() => setShowPopup(false)}
+          termID={termID}
+          termName={termName}
+        />
+      )}
       {editing ? (
         <div className="flex w-1/4 flex-col items-center justify-evenly rounded-r-md border-y border-r border-black bg-header">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className=" max-w-[2.5rem] cursor-pointer fill-[#CBD5E1]"
+            className=" max-w-[2.5rem] cursor-pointer fill-[#CBD5E1] hover:fill-[#F7F8FA]"
             viewBox="0 0 48 48"
             width="100%"
             onClick={() => {
@@ -67,7 +72,7 @@ const TermListEntry = ({ termID, termName, termDescription }) => {
           </svg>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="max-w-[2.5rem] cursor-pointer fill-[#CBD5E1]"
+            className="max-w-[2.5rem] cursor-pointer fill-[#CBD5E1] hover:fill-[#F7F8FA]"
             viewBox="0 0 48 48"
             width="100%"
             onClick={() => {
@@ -83,7 +88,7 @@ const TermListEntry = ({ termID, termName, termDescription }) => {
         <div className="flex w-1/4 flex-col items-center justify-evenly rounded-r-md border-y border-r border-black bg-header">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="max-w-[2.5rem] cursor-pointer fill-[#CBD5E1]"
+            className="max-w-[2.5rem] cursor-pointer fill-[#CBD5E1] hover:fill-[#F7F8FA]"
             viewBox="0 0 48 48"
             width="100%"
             onClick={() => setEditing(true)}
@@ -94,16 +99,8 @@ const TermListEntry = ({ termID, termName, termDescription }) => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 48 48"
             width="100%"
-            className="max-w-[2.5rem] cursor-pointer fill-[#CBD5E1]"
-            onClick={() =>
-              deleteTerm({
-                variables: {
-                  where: {
-                    id: termID,
-                  },
-                },
-              })
-            }
+            className="max-w-[2.5rem] cursor-pointer fill-[#CBD5E1] hover:fill-[#F7F8FA]"
+            onClick={() => setShowPopup(true)}
           >
             <path d="M13.05 42q-1.25 0-2.125-.875T10.05 39V10.5H8v-3h9.4V6h13.2v1.5H40v3h-2.05V39q0 1.2-.9 2.1-.9.9-2.1.9Zm21.9-31.5h-21.9V39h21.9Zm-16.6 24.2h3V14.75h-3Zm8.3 0h3V14.75h-3Zm-13.6-24.2V39Z" />
           </svg>

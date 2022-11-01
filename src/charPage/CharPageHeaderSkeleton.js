@@ -5,7 +5,8 @@ const CharPageHeaderSkeleton = () => {
       <div className="h-9 w-full rounded-md bg-gray-300" />
       <div className="h-9 w-full rounded-md bg-gray-300" />
       <div className="h-9 w-full rounded-md bg-gray-300" />
-      <div className="aspect-square w-full rounded-md bg-gray-300" />
+      <div className="aspect-square w-[88%] rounded-md bg-gray-300" />
+      <div className="h-[208px] w-full rounded-md bg-gray-300" />
     </div>
   );
 };

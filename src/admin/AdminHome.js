@@ -27,7 +27,7 @@ const AdminHome = () => {
       >
         <h2 className="text-3xl">You are logged in as {user.name}</h2>
         <button
-          className="rounded-md border border-black bg-[#EDF0F5] p-2 text-xl shadow-sm"
+          className="rounded-md border border-black bg-[#EDF0F5] p-2 text-xl shadow-sm hover:bg-[#F7F8FA]"
           onClick={() => logout({ returnTo: window.location.origin })}
         >
           Logout Here

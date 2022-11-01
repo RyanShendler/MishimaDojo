@@ -80,7 +80,7 @@ const CreateMoveForm = ({ charID, destroyForm }) => {
           </label>
         </div>
         <input
-          className="rounded-md bg-green-600 p-1 text-lg text-white"
+          className="rounded-md bg-green-600 p-1 text-lg text-white hover:bg-green-500"
           type="submit"
           value="Submit"
         />

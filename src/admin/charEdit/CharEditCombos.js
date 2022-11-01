@@ -23,14 +23,14 @@ const CharEditCombos = ({ charID }) => {
         <h1 className="text-2xl font-bold">Combos</h1>
         {showForm ? (
           <button
-            className="rounded-md bg-red-600 p-1 text-lg text-white"
+            className="rounded-md bg-red-600 p-1 text-lg text-white hover:bg-red-500"
             onClick={() => destroyForm()}
           >
             Cancel
           </button>
         ) : (
           <button
-            className="rounded-md bg-green-600 p-1 text-lg text-white"
+            className="rounded-md bg-green-600 p-1 text-lg text-white hover:bg-green-500"
             onClick={() => setShowForm(true)}
           >
             Create
