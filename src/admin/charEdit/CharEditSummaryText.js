@@ -17,7 +17,7 @@ const CharEditSummaryText = ({ charID, charSummary }) => {
       {editing ? (
         <div className="flex flex-row">
           <textarea
-            className="w-full"
+            className="w-full p-1"
             value={summary}
             onChange={(e) => setSummary(e.target.value)}
           />
