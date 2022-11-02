@@ -23,7 +23,7 @@ const StanceEditMoves = ({ charID, stanceID }) => {
         <div className="flex w-full items-center justify-between border-b border-black py-1 px-4">
           <h5 className="py-1 text-xl font-bold">Stance Moves</h5>
           <button
-            className="rounded-md bg-green-600 p-1 text-white"
+            className="rounded-md bg-green-600 p-1 text-white hover:bg-green-500"
             onClick={() => setShowPopup(true)}
           >
             Add Move
