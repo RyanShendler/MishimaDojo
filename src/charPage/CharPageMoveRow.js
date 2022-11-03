@@ -18,7 +18,7 @@ const CharPageMoveRow = ({
 }) => {
   return (
     <tr className="border border-black">
-      <td className="border border-black text-center">{moveName}</td>
+      <td className="border border-black text-center font-bold">{moveName}</td>
       <td className="border border-black text-center">{moveInput}</td>
       <td className="border border-black text-center">{`i${moveStartup}`}</td>
       <td className="border border-black text-center">
